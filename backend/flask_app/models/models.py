@@ -2,6 +2,43 @@ from datetime import datetime, timezone
 
 from . import db
 
+#WIP for DB implementation
+
+class Student(db.Model): 
+  __tablename__ = "Students"
+
+email = db.Column(db.string(255), primary_key = True)
+name = db.Column(db.string(255), nullable = False)
+degree = db.Column(db.string(255), nullable = False)
+dateStarted = db.Column(db.DateTime, nullable=False)
+
+class Friendships(db.Model):
+  __tablename__ = "Friendships"
+
+  email1 = db.Column(db.string(255), primary_key = True, db.ForeignKey('students.email'))
+  email2 = db.Column(db.string(255), primary_key = True, db.ForeignKey('students.email'))
+  dateCreated = db.Column(db.DateTime, nullable = False)
+
+class StudentCourses(db.Model): #as each student has multiple courses, hobbies, clubs etc, stored in own table
+  __tablename__ = "StudentCourses"
+
+  email = db.Column(db.string(255), primary_key = True, db.ForeignKey('students.email')
+  course = db.Column(db.string(255), primary_key = True)
+
+class StudentHobbies(db.Model):
+  __tablename__ = "StudentHobbies"
+
+  email = db.Column(db.string(255), primary_key = True, db.ForeignKey('students.email')
+  hobby = db.Column(db.string(255), primary_key = True)
+
+class StudentClubs(db.Model):
+  __tablename__ = "StudentClubs"
+
+  email = db.Column(db.string(255), primary_key = True, db.ForeignKey('students.email')
+  club = db.Column(db.string(255), primary_key = True)
+
+
+
 
 ####### EXAMPLE CODE FROM OLD PROJECT FOR EXAMPLE USE ONLY, UPDATE TO FIT OUR NEEDS #######
 
