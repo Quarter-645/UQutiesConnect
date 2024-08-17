@@ -6,20 +6,31 @@ import FriendData from "../TempData/FriendData"; // Import FriendData
 const Home = () => {
   return (
     <>
-      <AppBar position="sticky" sx={{ mb: 1 }}>
+      <AppBar position="sticky" sx={{ mb: 1, boxShadow: "none" }}>
         <Toolbar
           sx={{
             display: "flex",
-            justifyContent: "center",
-            backgroundColor: "#EFE9F3", // Change color here
+            alignItems: "center", // Center vertically
+            backgroundColor: "#e3d9ea",
+            height: "70px", // Adjust the height here
           }}
         >
           <Box
             component="img"
             src={Logo}
             alt="UQutie Logo"
-            sx={{ width: 100, height: 100, borderRadius: 1 }}
+            sx={{ width: 60, height: 60, borderRadius: 1 }} // Adjust size as needed
           />
+          <Box
+            sx={{
+              marginLeft: 1, // Space between image and text
+              fontSize: "1.5 rem", // Adjust font size as needed
+              fontFamily: "Baloo Bhaijaan",
+              color: "#996FD6",
+            }}
+          >
+            UQuties Connect
+          </Box>
         </Toolbar>
       </AppBar>
       <Grid
@@ -37,16 +48,16 @@ const Home = () => {
       >
         <Grid item>
           <h2 style={{ fontFamily: "Baloo Bhaijaan", color: "#996FD6" }}>
-            You're connected to...
+            You're new connections...
           </h2>
         </Grid>
         {FriendData.map((friend, index) => (
           <Grid item key={index} sx={{ textAlign: "center" }}>
             <Button
-              variant="contained"
+              variant="Outlined"
               sx={{
                 backgroundColor: "#EFE9F3",
-                color: "#B399DD",
+                color: "#A98BDA",
                 textTransform: "none",
                 fontFamily: "Baloo Bhaijaan",
                 fontSize: "1rem",
