@@ -24,7 +24,9 @@ const Login = () => {
     if (isLoginSuccess) {
       navigate("/home");
     } else {
+      // console.error("Failed to login:", error);
       alert("Login failed!");
+      setLoginSuccess(false);
     }
   };
 

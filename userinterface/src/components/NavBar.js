@@ -8,7 +8,7 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import AddIcon from "@mui/icons-material/Add";
 import HomeIcon from "@mui/icons-material/Home";
 
-const paths = ["/home", "/no-page", "/profile"];
+const paths = ["/home", "/timetable", "/profile"];
 
 function NavBar() {
   const [selectedPage, setSelectedPage] = useState(0);

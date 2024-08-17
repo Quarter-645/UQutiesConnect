@@ -9,6 +9,7 @@ import {
   FriendProfile,
   FriendsList,
   AddFriend,
+  Timetable,
 } from "./pages";
 import { NavBar } from "./components";
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="Friend" element={<FriendProfile />} />
             <Route path="Profile" element={<Profile />} />
             <Route path="friends-list" element={<FriendsList />} />
+            <Route path="timetable" element={<Timetable />} />
           </Route>
         </Routes>
       </BrowserRouter>

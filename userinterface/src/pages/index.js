@@ -6,6 +6,7 @@ import Register from "./Register";
 import FriendProfile from "./FriendProfile";
 import AddFriend from "./AddFriend";
 import FriendsList from "./FriendsList";
+import Timetable from "./Timetable";
 
 export {
   NoPage,
@@ -16,4 +17,5 @@ export {
   FriendProfile,
   FriendsList,
   AddFriend,
+  Timetable,
 };
