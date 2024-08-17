@@ -40,6 +40,7 @@ const Home = () => {
         spacing={2}
         sx={{
           padding: "20px",
+          paddingBottom: "60px",
           backgroundColor: "#FCF8FF", // Background color
           backgroundSize: "cover", // Ensure the image covers the container
           backgroundPosition: "center", // Center the image

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import { Box, Button, Grid, TextField } from "@mui/material";
 import { Password, Logo } from "../components";
 
 const Login = () => {
