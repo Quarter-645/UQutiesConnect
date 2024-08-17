@@ -1,16 +1,11 @@
 import React from "react";
-import { Grid, Avatar, Button } from "@mui/material";
+import { Grid, Button } from "@mui/material";
 import FriendData from "../TempData/FriendData";
-import { TopBar } from "../components";
+import { TopBar, MiniProfile } from "../components";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
-
-  const handleClick = (username) => {
-    console.log("username home", username);
-    navigate("/friend", { state: { username } });
-  };
 
   return (
     <>
@@ -67,28 +62,7 @@ const Home = () => {
 
         {FriendData.map((friend, index) => (
           <Grid item xs={12} key={index} sx={{ textAlign: "center" }}>
-            <Button
-              variant="Outlined"
-              sx={{
-                backgroundColor: "#EFE9F3",
-                color: "#A98BDA",
-                textTransform: "none",
-                fontFamily: "Baloo Bhaijaan",
-                fontSize: "1rem",
-                mb: 2,
-                "&:hover": {
-                  backgroundColor: "#FFFFFF",
-                },
-              }}
-              onClick={() => handleClick(friend.username)}
-            >
-              {friend.name} through {friend.course}
-            </Button>
-            <Avatar
-              alt={`${friend.name}'s Avatar`}
-              src={friend.avatarUrl}
-              sx={{ width: 100, height: 100, margin: "0 auto" }}
-            />
+            <MiniProfile friend={friend} />
           </Grid>
         ))}
       </Grid>
