@@ -289,6 +289,8 @@ def getRecommendedFriends():
 
     result = recommendationMaker(courses_results, hobbies_results, clubs_results)
 
+
+
     return jsonify(result), 200 
 
 def recommendationMaker(users_courses, users_hobbies, users_clubs):
@@ -320,9 +322,11 @@ def recommendationMaker(users_courses, users_hobbies, users_clubs):
         if username in recommendations:
             recommendations[username] += K*int(commonalities)
         else:
-            recommendations[username] = K*int(commonalities)     
+            recommendations[username] = K*int(commonalities) 
 
-    return recommendations
+    sorted_usernames = sorted(recommendations, key=recommendations.get, reverse=True)
+
+    return sorted_usernames
 
 
 @api.route('/add_hobby', methods=['POST'])
