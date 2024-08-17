@@ -13,6 +13,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import CourseCodes from "../TempData/CourseCodes";
 import ClubNames from "../TempData/ClubNames";
 import userProfile from "../TempData/UserData";
+import { AddTag } from "../components";
 
 const Profile = () => {
   const [courses, setCourses] = useState([]);
@@ -28,19 +29,19 @@ const Profile = () => {
     setClubInput(event.target.value);
   };
 
-  const addCourse = () => {
-    const trimmedCourse = courseInput.trim();
-    if (
-      trimmedCourse &&
-      CourseCodes.includes(trimmedCourse) &&
-      !courses.includes(trimmedCourse)
-    ) {
-      setCourses((prevCourses) => [...prevCourses, trimmedCourse]);
-      setCourseInput(""); // Clear input field after adding
-    } else {
-      alert("Course does not exist or is already added");
-    }
-  };
+  // const addCourse = () => {
+  //   const trimmedCourse = courseInput.trim();
+  //   if (
+  //     trimmedCourse &&
+  //     CourseCodes.includes(trimmedCourse) &&
+  //     !courses.includes(trimmedCourse)
+  //   ) {
+  //     setCourses((prevCourses) => [...prevCourses, trimmedCourse]);
+  //     setCourseInput(""); // Clear input field after adding
+  //   } else {
+  //     alert("Course does not exist or is already added");
+  //   }
+  // };
 
   const addClub = () => {
     const trimmedClub = clubInput.trim();
@@ -105,91 +106,11 @@ const Profile = () => {
       </Grid>
 
       <Grid item>
-        <h3 style={{ fontFamily: "Baloo Bhaijaan", color: "#996FD6" }}>
-          Current Courses:
-        </h3>
-        <Grid container spacing={1} alignItems="center">
-          <Grid item>
-            <TextField
-              id="course-input"
-              label="Course code..."
-              variant="standard"
-              value={courseInput}
-              onChange={handleCourseChange}
-            />
-          </Grid>
-          <Grid item>
-            <IconButton
-              aria-label="add course"
-              onClick={addCourse}
-              style={{ fontFamily: "Baloo Bhaijaan", color: "#B399DD" }}
-            >
-              <AddIcon />
-            </IconButton>
-          </Grid>
-        </Grid>
-        <List>
-          {courses.map((course, index) => (
-            <ListItem
-              key={index}
-              secondaryAction={
-                <IconButton
-                  aria-label="delete course"
-                  onClick={() => deleteCourse(course)}
-                  style={{ color: "#E3E3E3" }}
-                >
-                  <DeleteIcon />
-                </IconButton>
-              }
-            >
-              <ListItemText primary={course} />
-            </ListItem>
-          ))}
-        </List>
+        <AddTag tagData={CourseCodes} name={"Course"} />
       </Grid>
 
       <Grid item>
-        <h3 style={{ fontFamily: "Baloo Bhaijaan", color: "#996FD6" }}>
-          Current Clubs:
-        </h3>
-        <Grid container spacing={1} alignItems="center">
-          <Grid item>
-            <TextField
-              id="club-input"
-              label="Club name..."
-              variant="standard"
-              value={clubInput}
-              onChange={handleClubChange}
-            />
-          </Grid>
-          <Grid item>
-            <IconButton
-              aria-label="add club"
-              onClick={addClub}
-              style={{ color: "#B399DD" }}
-            >
-              <AddIcon />
-            </IconButton>
-          </Grid>
-        </Grid>
-        <List>
-          {clubs.map((club, index) => (
-            <ListItem
-              key={index}
-              secondaryAction={
-                <IconButton
-                  aria-label="delete club"
-                  onClick={() => deleteClub(club)}
-                  style={{ color: "#E3E3E3" }}
-                >
-                  <DeleteIcon />
-                </IconButton>
-              }
-            >
-              <ListItemText primary={club} />
-            </ListItem>
-          ))}
-        </List>
+        <AddTag tagData={ClubNames} name={"Club"} />
       </Grid>
     </Grid>
   );
