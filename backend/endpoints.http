@@ -6,15 +6,15 @@ GET {{baseUrl}}/health
 
 ### CREATE ACCOUNT
 POST {{baseUrl}}/createaccount
-
 Content-Type: application/json
+
 {
-    "username" : "cheesey",
+    "username": "cheesey",
     "email": "a@uq.edu.au",
-    "password" : "cool cats",
-    "name" : "Arthur Davidson",
-    "degree" : "Bachelor of Computer Science",
-    "dateStarted" : "(2024, 8, 17)"
+    "password": "cool cats",
+    "name": "Arthur Davidson",
+    "degree": "Bachelor of Computer Science",
+    "dateStarted": "2023-08-17"
 }
 
 ### CREATE A NEW FRIENDSHIP
@@ -24,13 +24,4 @@ Content-Type: application/json
 {
     "currentUserUsername" : "cats",
     "newFriendUsername" : "dogs"
-}
-
-### DELETE A FRIENDSHIP
-POST {{baseUrl}}/remove_friend
-Content-Type: application/json
-
-{
-    "currentUserUsername" : "cats",
-    "friendUsername" : "dogs"
 }

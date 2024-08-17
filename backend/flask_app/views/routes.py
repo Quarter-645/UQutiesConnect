@@ -70,26 +70,37 @@ def removeFriend():
 #request.get
 @api.route('/createaccount', methods=['POST'])
 def createaccount():
+    data = request.get_json()
     #regex email checker if not from UQ return 400
     pattern = r'\b[A-Za-z0-9._%+-]+@uq\.edu\.au\b'
-    email = request.json.get('email')
+    email = data.get('email')
     if not (re.fullmatch(pattern, email)):
-        return jsonify({'error': 'Invalid email address - not from UQ'}), 400
+        return jsonify({'error': 'Invalid email address - not from UQ.'}), 400
+    #verify that another account hasn't been created already with the same email
+    existingStudent = (
+        db.session.query(Student)
+        .filter(
+            (Student.email == email))
+    .first()
+    )
+    if existingStudent is not None:
+        return jsonify({'error': 'Student already exsits.'}), 400
+
 
     newAccount = Student( 
-        username = request.json.get('username'),
+        username = data.get('username'),
         email = email,
-        password = request.json.get('password'),
-        name=request.json.get('name'), 
-        degree=request.json.get('degree'),
-        dateStarted=request.json.get('dateStarted')
+        password = data.get('password'),
+        name = data.get('name'), 
+        degree = data.get('degree'),
+        dateStarted = data.get('dateStarted')
     )
 
     # Adds a new record to the database or will update an existing record 
     db.session.add(newAccount) 
     # Commits the changes to the database, this must be called for the changes to be saved 
-    db.session.commit() 
-    return jsonify(newAccount.to_dict(), {'status': 'Student created'}), 201
+    db.session.commit()
+    return jsonify({'status': 'Student created'}), 201
 
 
 @api.route('/login', methods=['POST'])
@@ -105,5 +116,3 @@ def login():
         .all()
     )
     return jsonify({"message": "Login successful", "username": Student.username}), 200
-
-
