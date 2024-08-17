@@ -4,6 +4,19 @@
 ### GET HEALTH
 GET {{baseUrl}}/health
 
+### CREATE ACCOUNT
+POST {{baseUrl}}/createaccount
+Content-Type: application/json
+
+{
+    "username" : "chesey",
+    "email": "a@uq.edu.au",
+    "password" : "cool cats",
+    "name" : "Arthur Davidson",
+    "degree" : "Bachelor of Computer Science",
+    "dateStarted" : "2023-08-17"
+}
+
 ### CREATE A NEW FRIENDSHIP
 POST {{baseUrl}}/add_friend
 Content-Type: application/json
