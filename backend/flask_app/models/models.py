@@ -7,7 +7,8 @@ from . import db
 class Student(db.Model): 
   __tablename__ = "Students"
 
-  email = db.Column(db.string(255), primary_key = True)
+  sID = db.Column(db.string(36), primary_key = True)
+  email = db.Column(db.string(255))
   name = db.Column(db.string(255), nullable = False)
   degree = db.Column(db.string(255), nullable = False)
   dateStarted = db.Column(db.DateTime, nullable=False)
@@ -16,29 +17,29 @@ class Friendships(db.Model):
   __tablename__ = "Friendships"
 
   friendshipID = db.Column(db.string(36), primary_key = True)
-  email1 = db.Column(db.string(255), db.ForeignKey('Students.email'))
-  email2 = db.Column(db.string(255), db.ForeignKey('Students.email'))
+  sID1 = db.Column(db.string(255), db.ForeignKey('Students.sID'))
+  sID2 = db.Column(db.string(255), db.ForeignKey('Students.sID'))
   dateCreated = db.Column(db.DateTime, nullable = False)
 
 class StudentCourses(db.Model): #as each student has multiple courses, hobbies, clubs etc, stored in own table
   __tablename__ = "StudentCourses"
 
   SCkey = db.Column(db.string(36), primary_key = True) 
-  email = db.Column(db.string(255), db.ForeignKey('Students.email'), nullable = False)
+  sID = db.Column(db.string(255), db.ForeignKey('Students.sID'), nullable = False)
   course = db.Column(db.string(255))
 
 class StudentHobbies(db.Model):
   __tablename__ = "StudentHobbies"
 
   SHkey = db.Column(db.string(36), primary_key = True) 
-  email = db.Column(db.string(255), db.ForeignKey('Students.email'), nullable = False)
+  sID = db.Column(db.string(255), db.ForeignKey('Students.sID'), nullable = False)
   hobby = db.Column(db.string(255))
 
 class StudentClubs(db.Model):
   __tablename__ = "StudentClubs"
 
   SClubkey = db.Column(db.string(36), primary_key = True) 
-  email = db.Column(db.string(255), db.ForeignKey('Students.email'), nullable = False)
+  sID = db.Column(db.string(255), db.ForeignKey('Students.sID'), nullable = False)
   club = db.Column(db.string(255))
 
 
