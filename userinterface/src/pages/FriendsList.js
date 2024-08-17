@@ -1,19 +1,15 @@
-import React, { useState } from "react";
-import { Grid, Button } from "@mui/material";
+import React from "react";
+import { Grid, Avatar, Button } from "@mui/material";
 import FriendData from "../TempData/FriendData";
-import { TopBar, MiniProfile } from "../components";
+import { TopBar } from "../components";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
-  const [index, setIndex] = useState(0);
-  const titles = ["Your new connections...", "Your old connections..."];
-  const buttons = ["UrQuties", "Find UQuties"];
 
-  const handleClick = () => {
-    // navigate("/add-friend");
-    // change FriendData
-    setIndex((prevIndex) => (prevIndex === 0 ? 1 : 0));
+  const handleClick = (username) => {
+    console.log("username home", username);
+    navigate("/friend", { state: { username } });
   };
 
   return (
@@ -33,12 +29,12 @@ const Home = () => {
           minHeight: "100vh",
         }}
       >
-        <Grid item>
+        <Grid item xs={8}>
           <h2 style={{ fontFamily: "Baloo Bhaijaan", color: "#996FD6" }}>
-            {titles[index]}
+            Your old connections...
           </h2>
         </Grid>
-        <Grid item>
+        <Grid item xs={4}>
           <Button
             variant="contained"
             sx={{
@@ -46,32 +42,37 @@ const Home = () => {
               color: "#grey",
               fontWeight: "bold",
               textTransform: "none",
-              marginRight: "10px",
               "&:hover": { backgroundColor: "#996FD6" },
             }}
-            onClick={handleClick}
+            onClick={() => navigate("/home")}
           >
-            {buttons[index]}
-          </Button>
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "#B399DD",
-              color: "#grey",
-              fontWeight: "bold",
-              textTransform: "none",
-              marginLeft: "10px",
-              "&:hover": { backgroundColor: "#996FD6" },
-            }}
-            onClick={handleClick}
-          >
-            Add Friends
+            Find UQuties
           </Button>
         </Grid>
-
         {FriendData.map((friend, index) => (
           <Grid item xs={12} key={index} sx={{ textAlign: "center" }}>
-            <MiniProfile friend={friend} />
+            <Button
+              variant="Outlined"
+              sx={{
+                backgroundColor: "#EFE9F3",
+                color: "#A98BDA",
+                textTransform: "none",
+                fontFamily: "Baloo Bhaijaan",
+                fontSize: "1rem",
+                mb: 2,
+                "&:hover": {
+                  backgroundColor: "#FFFFFF",
+                },
+              }}
+              onClick={() => handleClick(friend.username)}
+            >
+              {friend.name} through {friend.course}
+            </Button>
+            <Avatar
+              alt={`${friend.name}'s Avatar`}
+              src={friend.avatarUrl}
+              sx={{ width: 100, height: 100, margin: "0 auto" }}
+            />
           </Grid>
         ))}
       </Grid>

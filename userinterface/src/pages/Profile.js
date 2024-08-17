@@ -1,13 +1,20 @@
 import React, { useState } from "react";
-import { Avatar, Grid } from "@mui/material";
+import { Avatar, Button, Grid } from "@mui/material";
 import UserData from "../TempData/UserData";
 import userProfile from "../TempData/UserData";
 import { AddTag } from "../components";
 import TagList from "../components/TagList";
 import CourseCodes from "../TempData/CourseCodes";
 import ClubNames from "../TempData/ClubNames";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Profile = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const { username } = location.state || {};
+  console.log("username", username);
+
   const userClubs = UserData.map((user) => {
     if (user.username === "not_holly") {
       return user.clubs;
@@ -25,6 +32,10 @@ const Profile = () => {
   // const [isUser, setIsUser] = useState(UserData.username === "not_holly");
   const [isUser, setIsUser] = useState(true);
 
+  const handleFriendClick = () => {
+    navigate("/home");
+  };
+
   return (
     <Grid
       container
@@ -34,6 +45,7 @@ const Profile = () => {
       spacing={3}
       style={{
         padding: "20px",
+        paddingBottom: "60px",
         backgroundColor: "#FCF8FF",
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -58,6 +70,18 @@ const Profile = () => {
         <h3 style={{ fontFamily: "Baloo Bhaijaan", color: "#B399DD" }}>
           {userProfile.username}
         </h3>
+        <Button
+          variant="contained"
+          onClick={handleFriendClick}
+          sx={{
+            backgroundColor: "#B399DD",
+            color: "#grey",
+            fontWeight: "bold",
+            "&:hover": { backgroundColor: "#996FD6" },
+          }}
+        >
+          Friends
+        </Button>
       </Grid>
 
       <Grid item>

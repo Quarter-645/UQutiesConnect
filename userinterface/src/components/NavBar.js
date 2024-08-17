@@ -5,6 +5,7 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import AddIcon from "@mui/icons-material/Add";
 import HomeIcon from "@mui/icons-material/Home";
 
 const paths = ["/home", "/no-page", "/profile"];
@@ -55,7 +56,7 @@ function NavBar() {
             icon={<HomeIcon sx={{ color: "#996FD6" }} />}
           />
           <BottomNavigationAction
-            label="No Page"
+            label="Timetable Matching"
             icon={<FavoriteIcon sx={{ color: "#996FD6" }} />}
           />
           <BottomNavigationAction
