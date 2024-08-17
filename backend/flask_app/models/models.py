@@ -7,21 +7,22 @@ from . import db
 class Student(db.Model): 
   __tablename__ = "Students"
 
-email = db.Column(db.string(255), primary_key = True)
-name = db.Column(db.string(255), nullable = False)
-degree = db.Column(db.string(255), nullable = False)
-dateStarted = db.Column(db.DateTime, nullable=False)
+  email = db.Column(db.string(255), primary_key = True)
+  name = db.Column(db.string(255), nullable = False)
+  degree = db.Column(db.string(255), nullable = False)
+  dateStarted = db.Column(db.DateTime, nullable=False)
 
 class Friendships(db.Model):
   __tablename__ = "Friendships"
 
-  email1 = db.Column(db.string(255), db.ForeignKey('Students.email'), primary_key = True)
-  email2 = db.Column(db.string(255), db.ForeignKey('Students.email'), primary_key = True)
+  friendshipID = db.Column(db.string(36), primary_key = True)
+  email1 = db.Column(db.string(255), db.ForeignKey('Students.email'))
+  email2 = db.Column(db.string(255), db.ForeignKey('Students.email'))
   dateCreated = db.Column(db.DateTime, nullable = False)
 
 class StudentCourses(db.Model): #as each student has multiple courses, hobbies, clubs etc, stored in own table
   __tablename__ = "StudentCourses"
-
+ 
   email = db.Column(db.string(255), db.ForeignKey('Students.email'), primary_key = True)
   course = db.Column(db.string(255), primary_key = True)
 
