@@ -22,21 +22,24 @@ class Friendships(db.Model):
 
 class StudentCourses(db.Model): #as each student has multiple courses, hobbies, clubs etc, stored in own table
   __tablename__ = "StudentCourses"
- 
-  email = db.Column(db.string(255), db.ForeignKey('Students.email'), primary_key = True)
-  course = db.Column(db.string(255), primary_key = True)
+
+  SCkey = db.Column(db.Column(db.string(36), primary_key = True) 
+  email = db.Column(db.string(255), db.ForeignKey('Students.email'), nullable = False))
+  course = db.Column(db.string(255))
 
 class StudentHobbies(db.Model):
   __tablename__ = "StudentHobbies"
 
-  email = db.Column(db.string(255), db.ForeignKey('Students.email'), primary_key = True)
-  hobby = db.Column(db.string(255), primary_key = True)
+  SHkey = db.Column(db.Column(db.string(36), primary_key = True) 
+  email = db.Column(db.string(255), db.ForeignKey('Students.email'), nullable = False))
+  hobby = db.Column(db.string(255))
 
 class StudentClubs(db.Model):
   __tablename__ = "StudentClubs"
 
-  email = db.Column(db.string(255), db.ForeignKey('Students.email'), primary_key = True)
-  club = db.Column(db.string(255), primary_key = True)
+  SClubkey = db.Column(db.Column(db.string(36), primary_key = True) 
+  email = db.Column(db.string(255), db.ForeignKey('Students.email'), nullable = False))
+  club = db.Column(db.string(255))
 
 
 
