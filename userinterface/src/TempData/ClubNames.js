@@ -1,6 +1,2 @@
-const ClubNames = [
-    "UQLIT",
-    "UQCS",
-    "WISA",
-];
-export default ClubNames
+const ClubNames = ["UQLIT", "UQCS", "WISA"];
+export default ClubNames;

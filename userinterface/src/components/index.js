@@ -1,3 +1,6 @@
 import NavBar from "./NavBar";
+import Password from "./Password";
+import UserProfile from "./UserProfile";
+import FixedProfile from "./FixedProfile";
 
-export default NavBar;
+export { NavBar, Password, UserProfile, FixedProfile };

@@ -1,8 +1,8 @@
-import Uq from '../assets/UQutieLogo.png'
-// ../TempData/UserData.js
+import UQuties from "../assets/UQutieLogo.png";
+
 const userProfile = {
-    username: "not_holly", 
-    profilePicture: Uq // Path to the profile picture
+  username: "not_holly",
+  profilePicture: UQuties, // Path to the profile picture
 };
 
 export default userProfile;
