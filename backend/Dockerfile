@@ -15,6 +15,7 @@ RUN pip3 install --no-cache-dir Flask==2.3.2
 RUN pip3 install --no-cache-dir requests==2.28.1 
 RUN pip3 install --no-cache-dir sqlalchemy==1.4.47 
 RUN pip3 install --no-cache-dir Flask-SQLAlchemy==3.0.3
+RUN pip3 install --no-cache-dir Flask-Cors==3.1.1
 
 
 # Expose the port (e.g., 8000)
