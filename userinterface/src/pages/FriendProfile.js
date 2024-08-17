@@ -46,6 +46,7 @@ const FriendProfile = () => {
       spacing={3}
       style={{
         padding: "20px",
+        paddingBottom: "60px",
         backgroundColor: "#FCF8FF",
         backgroundSize: "cover",
         backgroundPosition: "center",

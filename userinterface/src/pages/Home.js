@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid, Button } from "@mui/material";
 import FriendData from "../TempData/FriendData";
 import { TopBar, MiniProfile } from "../components";
@@ -6,6 +6,15 @@ import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
+  const [index, setIndex] = useState(0);
+  const titles = ["Your new connections...", "Your old connections..."];
+  const buttons = ["UrQuties", "Find UQuties"];
+
+  const handleClick = () => {
+    // navigate("/add-friend");
+    // change FriendData
+    setIndex((prevIndex) => (prevIndex === 0 ? 1 : 0));
+  };
 
   return (
     <>
@@ -26,7 +35,7 @@ const Home = () => {
       >
         <Grid item>
           <h2 style={{ fontFamily: "Baloo Bhaijaan", color: "#996FD6" }}>
-            Your new connections...
+            {titles[index]}
           </h2>
         </Grid>
         <Grid item>
@@ -40,9 +49,9 @@ const Home = () => {
               marginRight: "10px",
               "&:hover": { backgroundColor: "#996FD6" },
             }}
-            onClick={() => navigate("/friends-list")}
+            onClick={handleClick}
           >
-            UrQuties
+            {buttons[index]}
           </Button>
           <Button
             variant="contained"
@@ -54,9 +63,9 @@ const Home = () => {
               marginLeft: "10px",
               "&:hover": { backgroundColor: "#996FD6" },
             }}
-            onClick={() => navigate("/add-friend")}
+            onClick={handleClick}
           >
-            Find Friends
+            Add Friends
           </Button>
         </Grid>
 
