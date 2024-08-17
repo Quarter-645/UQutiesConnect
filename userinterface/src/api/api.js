@@ -120,7 +120,7 @@ export const login = async (username, password) => {
 
 // Create Account
 
-export const createAccount = async (username, password, email, name, degree, dateStarted) => {
+export const createAccount = async (username, password, email, name, degree = null, dateStarted = null) => {
     try {
         const payload = {
             username: username,

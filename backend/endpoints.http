@@ -15,12 +15,10 @@ POST {{baseUrl}}/createaccount
 Content-Type: application/json
 
 {
-    "username": "cheesey",
-    "email": "arthur@uq.edu.au",
+    "username": "peezey",
+    "email": "aasdfrthur@uq.edu.au",
     "password": "arthurpassword",
-    "name": "Arthur Osorio",
-    "degree": "Bachelor of Computer Science",
-    "dateStarted": "2023-08-17"
+    "name": "Arthur Osorio"
 }
 
 ### CREATE SECOND TEST ACCOUNT
