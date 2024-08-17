@@ -65,10 +65,11 @@ export const removeFriend = async (currentUserUsername, friendUsername) => {
 }
 
 // GET FRIENDS
+// Returns a List of Friends for the Current User
 
 export const getFriends = async (currentUserUsername) => {
     try {
-        const response = await fetch(`${BASE_URL}/get_friends?username=${currentUserUsername}`);
+        const response = await fetch(`${BASE_URL}/get_friends/${currentUserUsername}`);
         if (response.ok) {
             const res = await response.json();
             console.log("Get Friends Response", res);
@@ -83,6 +84,75 @@ export const getFriends = async (currentUserUsername) => {
         throw error;
     }
 }
+
+// LOGIN 
+// Checks a users authorisation if they are allowed, 200 is permitted
+
+export const login = async (username, password) => {
+    try {
+        payload = {
+            username: username,
+            password: password
+        }
+
+        const response = await fetch(`${BASE_URL}/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+        });
+
+        if (response.ok) {
+            const res = await response.json();
+            console.log("Login response: ", res);
+            return res;
+        } else {
+            const errorData = await response.json();
+            console.error("Failed to login:", errorData.error);
+            throw new Error(errorData.error);
+        }
+    } catch (error) {
+        console.error("Error logging in:", error.message);
+        throw error;
+    }
+};
+
+// Create Account
+
+export const createAccount = async (username, password, email, name, degree, dateStarted) => {
+    try {
+        payload = {
+            username: username,
+            password: password,
+            email: email,
+            name: name,
+            degree: degree,
+            dateStarted: dateStarted
+        }
+
+        const response = await fetch(`${BASE_URL}/createaccount`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+        });
+
+        if (response.ok) {
+            const res = await response.json();
+            console.log("Create Account Response", res);
+            return res;
+        } else {
+            const errorData = await response.json();
+            console.error("Failed to create account:", errorData.error);
+            throw new Error(errorData.error);
+        }
+    } catch (error) {
+        console.error("Error creating account:", error.message);
+        throw error;
+    }
+};
 
 // RECIPES
 
