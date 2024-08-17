@@ -20,6 +20,8 @@ const Search = () => {
     setUsernameInput(event.target.value);
   };
 
+  // const possibleUsernames = usernameArray.map((user) => user.username);
+
   const addFriend = () => {
     const trimmedUsername = usernameInput.trim();
 
@@ -34,7 +36,7 @@ const Search = () => {
     } else {
       alert("Username does not exist.");
     }
-    console.log("usernames", usernames);
+    // console.log("usernames", usernames);
   };
   return (
     <Grid
@@ -42,7 +44,7 @@ const Search = () => {
       direction="column"
       justifyContent="center"
       alignItems="center"
-      spacing={3}
+      spacing={1}
       style={{
         padding: "20px",
         backgroundColor: "#FCF8FF",
@@ -62,7 +64,7 @@ const Search = () => {
         >
           ⟡Add a UQutie⟡
         </h1>
-        <Grid container spacing={1} alignItems="center">
+        <Grid container spacing={3} alignItems="center">
           <Grid item>
             <TextField
               id="username-input"
