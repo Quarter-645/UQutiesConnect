@@ -4,7 +4,7 @@ const BASE_URL = "http://localhost:8000/";
 
 export const addFriend = async (currentUserUsername, newFriendUsername) => {
     try {
-        payload = {
+        const payload = {
             currentUserUsername: currentUserUsername,
             newFriendUsername: newFriendUsername
         }
@@ -36,7 +36,7 @@ export const addFriend = async (currentUserUsername, newFriendUsername) => {
 
 export const removeFriend = async (currentUserUsername, friendUsername) => {
     try {
-        payload = {
+        const payload = {
             currentUserUsername: currentUserUsername,
             newFriendUsername: friendUsername
         }
@@ -90,7 +90,7 @@ export const getFriends = async (currentUserUsername) => {
 
 export const login = async (username, password) => {
     try {
-        payload = {
+        const payload = {
             username: username,
             password: password
         }
@@ -122,7 +122,7 @@ export const login = async (username, password) => {
 
 export const createAccount = async (username, password, email, name, degree, dateStarted) => {
     try {
-        payload = {
+        const payload = {
             username: username,
             password: password,
             email: email,
@@ -158,7 +158,7 @@ export const createAccount = async (username, password, email, name, degree, dat
 
 export const addCourse = async (username, courseCode) => {
     try {
-        payload = {
+        const payload = {
             currentUserUsername: username,
             courseCode: courseCode
         }
@@ -190,7 +190,7 @@ export const addCourse = async (username, courseCode) => {
 
 export const removeCourse = async (username, courseCode) => {
     try {
-        payload = {
+        const payload = {
             currentUserUsername: username,
             courseCode: courseCode
         }
