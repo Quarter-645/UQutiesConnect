@@ -10,6 +10,25 @@ api = Blueprint('api', __name__)
 def health():
     return jsonify({"status": "ok"}), 200
     
+@api.route('/get_friends/<string:username>', methods=['GET'])
+def getFriends(username):
+    friendships = (
+        db.session.query(Friendships)
+        .filter(
+            (Friendships.username1 == username) | (Friendships.username2 == username)
+        )
+        .all()
+    )
+
+    friends = []
+    for friendship in friendships:
+        if friendship.username1 == username:
+            friends.append(friendship.username2)
+        else:
+            friends.append(friendship.username1)
+
+    return jsonify(friends), 200
+
 @api.route('/add_friend', methods=['POST'])
 def addFriend():
     data = request.get_json()

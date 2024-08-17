@@ -4,6 +4,9 @@
 ### GET HEALTH
 GET {{baseUrl}}/health
 
+### GET FRIENDSHIPS
+GET {{baseUrl}}/get_friends/cats
+
 ### CREATE ACCOUNT
 POST {{baseUrl}}/createaccount
 Content-Type: application/json
@@ -23,5 +26,14 @@ Content-Type: application/json
 
 {
     "currentUserUsername" : "cats",
-    "newFriendUsername" : "dogs"
+    "newFriendUsername" : "weirdo"
+}
+
+### DELETE A FRIENDSHIP
+POST {{baseUrl}}/remove_friend
+Content-Type: application/json
+
+{
+    "currentUserUsername" : "cats",
+    "friendUsername" : "dogs"
 }
