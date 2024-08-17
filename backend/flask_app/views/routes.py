@@ -142,3 +142,56 @@ def login():
 
 
     return jsonify({"message": "Login successful"}), 200
+
+@api.route('/add_course', methods=['POST'])
+def addCourse():
+
+    data = request.get_json()
+    currentUserUsername = data.get('currentUserUsername')
+    courseCode = data.get('courseCode')
+    
+    #check course not already added
+    existing_course = (
+        db.session.query(StudentCourses.course)
+        .filter(
+            ((StudentCourses.username == currentUserUsername) & (StudentCourses.course == courseCode))
+        )
+        .first()
+    )    
+
+    if existing_course:
+        return jsonify({'error': 'Course already added'}), 403
+
+    newCourse = StudentCourses(
+        username = currentUserUsername,
+        course = courseCode
+    )
+
+    db.session.add(newCourse)
+    db.session.commit()
+
+    return jsonify({"status": "course added"}), 201    
+
+@api.route('/remove_course', methods=['POST'])
+def removeCourse():
+
+    data = request.get_json()
+    currentUserUsername = data.get('currentUserUsername')
+    courseCode = data.get('courseCode')
+    
+    #check course exists for that student
+    existing_course = (
+        db.session.query(StudentCourses)
+        .filter(
+            ((StudentCourses.username == currentUserUsername) & (StudentCourses.course == courseCode))
+        )
+        .first()
+    )    
+
+    if not(existing_course):
+        return jsonify({'error': 'Course does not exist'}), 404
+
+    db.session.delete(existing_course)
+    db.session.commit()
+
+    return jsonify({"status": "course removed"}), 200  
