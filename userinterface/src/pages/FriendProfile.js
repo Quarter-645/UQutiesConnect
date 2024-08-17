@@ -10,6 +10,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 const FriendProfile = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [isFriend, setFriend] = useState(false);
 
   const { username } = location.state || {};
   console.log("username", username);
@@ -33,6 +34,7 @@ const FriendProfile = () => {
 
   const handleFriendClick = () => {
     // navigate("/friend");
+    setFriend(!isFriend);
   };
 
   return (
@@ -68,18 +70,33 @@ const FriendProfile = () => {
         <h3 style={{ fontFamily: "Baloo Bhaijaan", color: "#B399DD" }}>
           {/* {userProfile.username} */}
         </h3>
-        <Button
-          variant="contained"
-          onClick={handleFriendClick}
-          sx={{
-            backgroundColor: "#B399DD",
-            color: "#grey",
-            fontWeight: "bold",
-            "&:hover": { backgroundColor: "#996FD6" },
-          }}
-        >
-          Add Friend
-        </Button>
+        {isFriend ? (
+          <Button
+            variant="contained"
+            onClick={handleFriendClick}
+            sx={{
+              backgroundColor: "#F8C8DC",
+              color: "#grey",
+              fontWeight: "bold",
+              "&:hover": { backgroundColor: "#FFC0CB" },
+            }}
+          >
+            Remove Friend
+          </Button>
+        ) : (
+          <Button
+            variant="contained"
+            onClick={handleFriendClick}
+            sx={{
+              backgroundColor: "#B399DD",
+              color: "#grey",
+              fontWeight: "bold",
+              "&:hover": { backgroundColor: "#996FD6" },
+            }}
+          >
+            Add Friend
+          </Button>
+        )}
       </Grid>
 
       <Grid item>

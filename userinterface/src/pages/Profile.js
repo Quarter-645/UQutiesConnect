@@ -33,7 +33,7 @@ const Profile = () => {
   const [isUser, setIsUser] = useState(true);
 
   const handleFriendClick = () => {
-    navigate("/home");
+    navigate("/friends-list");
   };
 
   return (
@@ -79,7 +79,7 @@ const Profile = () => {
             "&:hover": { backgroundColor: "#996FD6" },
           }}
         >
-          Friends List
+          Friends
         </Button>
       </Grid>
 

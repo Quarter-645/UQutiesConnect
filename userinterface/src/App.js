@@ -24,7 +24,7 @@ function App() {
             <Route path="*" element={<NoPage />} />
             <Route path="Friend" element={<FriendProfile />} />
             <Route path="Profile" element={<Profile />} />
-            <Route path="Friends-list" element={<FriendsList />} />
+            <Route path="friends-list" element={<FriendsList />} />
           </Route>
         </Routes>
       </BrowserRouter>
