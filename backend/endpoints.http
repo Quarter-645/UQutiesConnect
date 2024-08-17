@@ -10,6 +10,5 @@ Content-Type: application/json
 
 {
     "currentUserUsername" : "cats",
-    "newFriendUsername" : "dogs",
-    "dateCreated" : "2021-01-01"
+    "newFriendUsername" : "dogs"
 }

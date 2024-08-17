@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request #type:ignore
 from flask_app.models import db
 from flask_app.models.models import Student, Friendships
 import re
+from datetime import datetime
 
 api = Blueprint('api', __name__)
 
@@ -12,15 +13,36 @@ def health():
 @api.route('/add_friend', methods=['POST'])
 def addFriend():
     data = request.get_json()
+
+    currentUserUsername = data.get('currentUserUsername')
+    newFriendUsername = data.get('newFriendUsername')
+
+    # Format the date as DD-MM-YYYY
+    formatted_date = datetime.now().strftime("%d-%m-%Y") 
+    
+    # Get Friendships connected to the current user
+    existing_friendships = (
+        db.session.query(Friendships)
+        .filter(
+            ((Friendships.username1 == currentUserUsername) & (Friendships.username2 == newFriendUsername)) |
+            ((Friendships.username2 == currentUserUsername) & (Friendships.username1 == newFriendUsername))
+        )
+        .all()
+    )
+
+    if len(existing_friendships) > 0:
+        return jsonify({'error': 'Friendship already exists'}), 403
+
     newFriendship = Friendships(
-        username1 = data.get('currentUserUsername'),
-        username2 = data.get('newFriendUsername'),
-        dateCreated = data.get('dateCreated')
+        username1 = currentUserUsername,
+        username2 = newFriendUsername,
+        dateCreated = formatted_date
     )
 
     db.session.add(newFriendship)
     db.session.commit()
-    return jsonify({"status": "ok"}), 200
+
+    return jsonify({"status": "friendship created"}), 201
 
 #request.get
 @api.route('/createaccount', methods=['POST'])
