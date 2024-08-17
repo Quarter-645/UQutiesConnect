@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
-import { Password } from "../components";
+import { Password, Logo } from "../components";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -44,8 +44,7 @@ const Login = () => {
           alignItems="center"
         >
           <Grid item xs={12}>
-            {/* icon */}
-            <Typography>UQuties Connect</Typography>
+            <Logo />
           </Grid>
           <Grid item xs={12}>
             <TextField

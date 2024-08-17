@@ -1,4 +1,4 @@
-import UQuties from "../assets/UQutieLogo.png";
+import { UQuties } from "../assets";
 
 const userProfile = {
   username: "not_holly",
