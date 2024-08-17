@@ -130,8 +130,7 @@ def login():
 
     existing_Student = (
         db.session.query(Student)
-        .filter(
-            (Student.email == email))
+        .filter((Student.email == email))
         .first()
     )
 

@@ -2,30 +2,41 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Grid, TextField } from "@mui/material";
 import { Password, Logo } from "../components";
+import { login } from "../api/api";
 
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: null,
-    password: null,
+    password: null
   });
-  const [isLoginSuccess, setLoginSuccess] = useState(true);
+  const [isLoginSuccess, setLoginSuccess] = useState(false);
 
   const handleFieldChange = (fieldName, value) => {
     setFormData({ ...formData, [fieldName]: value });
   };
 
   const handleSubmit = async (event) => {
+    event.preventDefault();
     console.log("Form Data:", formData);
 
-    event.preventDefault();
+    const { email, password } = formData;
+
+    try {
+      var response = await login(email, password);
+      setLoginSuccess(true);
+      navigate("/home");
+    } catch (error) {
+      console.error("Failed to login:", error);
+      setLoginSuccess(false);
+    }
 
     // assume success
-    if (isLoginSuccess) {
-      navigate("/home");
-    } else {
-      alert("Login failed!");
-    }
+    // if (isLoginSuccess) {
+    //   navigate("/home");
+    // } else {
+    //   alert("Login failed!");
+    // }
   };
 
   return (

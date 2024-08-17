@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8000/";
+const BASE_URL = "http://localhost:8000";
 
 // ADD FRIEND
 
@@ -88,10 +88,10 @@ export const getFriends = async (currentUserUsername) => {
 // LOGIN 
 // Checks a users authorisation if they are allowed, 200 is permitted
 
-export const login = async (username, password) => {
+export const login = async (email, password) => {
     try {
         const payload = {
-            username: username,
+            email: email,
             password: password
         }
 
