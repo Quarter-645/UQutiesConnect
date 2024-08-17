@@ -105,7 +105,6 @@ def createaccount():
     if existingStudent is not None:
         return jsonify({'error': 'Student already exsits.'}), 400
 
-
     newAccount = Student( 
         username = data.get('username'),
         email = email,
@@ -124,14 +123,22 @@ def createaccount():
 
 @api.route('/login', methods=['POST'])
 def login():
-
-    username = request.json.get('username')
-    password = request.json.get('password')
+    data = request.get_json()
+    email = data.get('email')
+    password = data.get('password')
 
     existing_Student = (
         db.session.query(Student)
         .filter(
-            (Student.username == username) & (Student.password == password))
-        .all()
+            (Student.email == email))
+        .first()
     )
-    return jsonify({"message": "Login successful", "username": Student.username}), 200
+
+    if existing_Student == None:
+        return jsonify({'error': 'Student does not exist.'}), 400
+    
+    if existing_Student.password != password:
+        return jsonify({'error': 'Password incorrect.'}), 400
+
+
+    return jsonify({"message": "Login successful"}), 200

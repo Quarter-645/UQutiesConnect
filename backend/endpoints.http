@@ -7,18 +7,75 @@ GET {{baseUrl}}/health
 ### GET FRIENDSHIPS
 GET {{baseUrl}}/get_friends/cats
 
-### CREATE ACCOUNT
+### GET FRIENDSHIPS
+GET {{baseUrl}}/get_friends/cats
+
+### CREATE TEST ACCOUNT
 POST {{baseUrl}}/createaccount
 Content-Type: application/json
 
 {
-    "username": "queesy",
-    "email": "b@uq.edu.au",
-    "password": "cool cats",
-    "name": "Arthur Davidson",
+    "username": "cheesey",
+    "email": "arthur@uq.edu.au",
+    "password": "arthurpassword",
+    "name": "Arthur Osorio",
     "degree": "Bachelor of Computer Science",
     "dateStarted": "2023-08-17"
 }
+
+### CREATE SECOND TEST ACCOUNT
+POST {{baseUrl}}/createaccount
+Content-Type: application/json
+
+{
+    "username": "miquellasimp",
+    "email": "malenia@uq.edu.au",
+    "password": "iammaleniabladeofmiquella",
+    "name": "Malenia Marikason",
+    "degree": "Bachelor of Scarlet Rot",
+    "dateStarted": "2023-08-17"
+}
+
+###TESTING NON UQ ACCOUNTS
+POST {{baseUrl}}/createaccount
+Content-Type: application/json
+
+{
+    "username": "Radiohead",
+    "email": "a@im.a.creep",
+    "password": "imaweirdo",
+    "name": "Whatthehell Amilookingfor",
+    "degree": "I Don't Belong Here",
+    "dateStarted": "2023-08-17"
+}
+
+###CORRECT PASSWORD LOGIN TEST
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+    "email": "arthur@uq.edu.au",
+    "password": "arthurpassword"
+}
+
+###NONEXISTANT STUDENT LOGIN TEST
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+    "email": "notarthur@uq.edu.au",
+    "password": "arthurpassword"
+}
+
+###FALSE PASSWORD LOGIN TEST
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+    "email": "arthur@uq.edu.au",
+    "password": "notarthurspassword"
+}
+
 
 ### CREATE A NEW FRIENDSHIP
 POST {{baseUrl}}/add_friend
