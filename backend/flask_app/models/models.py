@@ -12,7 +12,9 @@ class Student(db.Model):
   password = db.Column(db.String(255))
   name = db.Column(db.String(255), nullable = False)
   degree = db.Column(db.String(255), nullable = False)
-  dateStarted = db.Column(db.DateTime, nullable=False)
+  dateStarted = db.Column(db.String(50), nullable=False) #DD-MM-YYYY Format
+
+
 
 class Friendships(db.Model):
   __tablename__ = "Friendships"
