@@ -1,3 +1,4 @@
 import NavBar from "./NavBar";
+import Password from "./Password";
 
-export default NavBar;
+export { NavBar, Password };

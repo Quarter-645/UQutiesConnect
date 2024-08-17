@@ -13,7 +13,7 @@ function NavBar({ pages, onSelectPage }) {
 
   const handleChange = (event, newPage) => {
     setSelectedPage(newPage);
-    const paths = ["/home", "/no-page", "/login"];
+    const paths = ["/home", "/no-page", "/profile"];
     navigate(paths[newPage]);
   };
 
@@ -30,7 +30,7 @@ function NavBar({ pages, onSelectPage }) {
         >
           <BottomNavigationAction label="Home" icon={<RestoreIcon />} />
           <BottomNavigationAction label="No Page" icon={<FavoriteIcon />} />
-          <BottomNavigationAction label="Login" icon={<LocationOnIcon />} />
+          <BottomNavigationAction label="Profile" icon={<LocationOnIcon />} />
         </BottomNavigation>
       </Box>
       <Outlet />

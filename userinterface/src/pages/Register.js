@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import { Password } from "../components";
 
-const Login = () => {
+const Register = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: null,
@@ -14,7 +14,6 @@ const Login = () => {
   const handleFieldChange = (fieldName, value) => {
     setFormData({ ...formData, [fieldName]: value });
   };
-
   const handleSubmit = async (event) => {
     console.log("Form Data:", formData);
 
@@ -22,9 +21,9 @@ const Login = () => {
 
     // assume success
     if (isLoginSuccess) {
-      navigate("/home");
+      navigate("/profile");
     } else {
-      alert("Login failed!");
+      alert("Registration failed!");
     }
   };
 
@@ -62,15 +61,6 @@ const Login = () => {
           </Grid>
           <Grid item xs={12}>
             <Button variant="contained" type="submit">
-              Confirm
-            </Button>
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              variant="text"
-              size="small"
-              onClick={() => navigate("/register")}
-            >
               Register
             </Button>
           </Grid>
@@ -80,4 +70,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
