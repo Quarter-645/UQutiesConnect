@@ -94,3 +94,23 @@ Content-Type: application/json
     "currentUserUsername" : "cats",
     "friendUsername" : "dogs"
 }
+
+### ADD A COURSE FOR A STUDENT
+Post {{baseUrl}}/add_course
+Content-Type: application/json
+
+{
+    "currentUserUsername" : "bigdog",
+    "courseCode" : "CSSE1001"
+ }
+    
+
+### Remove A COURSE FOR A STUDENT
+Post {{baseUrl}}/remove_course
+Content-Type: application/json
+
+{
+    "currentUserUsername" : "bigdog",
+    "courseCode" : "CSSE1001"
+ }
+        
