@@ -1,8 +1,28 @@
-const FriendProfile = {
-    username: 'friend_name',
-    profilePicture: '/path/to/friendProfile.png',
-    courses: ['CS101', 'MATH202', 'PHYS303'],
-    clubs: ['Coding Club', 'Math Club', 'Physics Society']
-    };
+import {Alice, Bob, Tina, Adam} from '../assets/index'
+// src/data/FriendData.js
 
-export default FriendProfile;
+const FriendData = [
+    {
+    name: "Alice",
+    course: "CSSE2002",
+    avatarUrl: Alice,
+    },
+    { 
+    name: "Bob", 
+    course: "INFS1200", 
+    avatarUrl: Bob,
+    },
+    {
+    name: "Tina",
+    course: "CSSE2010",
+    avatarUrl: Tina,
+    },
+    {
+    name: "Adam",
+    course: "MATH1061",
+    avatarUrl: Adam,
+    },
+  // Add more friends here
+];
+
+export default FriendData;

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Button, Grid, TextField } from "@mui/material";
-import { Password, Logo } from "../components";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import { Logo, Password } from "../components";
 
-const Login = () => {
+const Register = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: null,
@@ -14,7 +14,6 @@ const Login = () => {
   const handleFieldChange = (fieldName, value) => {
     setFormData({ ...formData, [fieldName]: value });
   };
-
   const handleSubmit = async (event) => {
     console.log("Form Data:", formData);
 
@@ -22,9 +21,9 @@ const Login = () => {
 
     // assume success
     if (isLoginSuccess) {
-      navigate("/home");
+      navigate("/profile");
     } else {
-      alert("Login failed!");
+      alert("Registration failed!");
     }
   };
 
@@ -34,7 +33,6 @@ const Login = () => {
       justifyContent="center"
       alignItems="center"
       height="100vh"
-      sx={{ backgroundColor: '#FCF8FF' }} 
     >
       <form onSubmit={handleSubmit}>
         <Grid
@@ -61,22 +59,7 @@ const Login = () => {
             <Password handleChange={handleFieldChange} />
           </Grid>
           <Grid item xs={12}>
-            <Button variant="contained" type="submit" 
-            sx={{ 
-              backgroundColor: '#B399DD', 
-              color: '#grey', 
-              fontWeight: 'bold',
-              '&:hover': { backgroundColor: '#996FD6' }}}>
-              Confirm
-            </Button>
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-            sx={{color: '#996FD6', fontWeight: 'bold'}}
-              variant="text"
-              size="small"
-              onClick={() => navigate("/register")}
-            >
+            <Button variant="contained" type="submit">
               Register
             </Button>
           </Grid>
@@ -86,4 +69,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

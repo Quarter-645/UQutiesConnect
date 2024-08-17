@@ -1,72 +1,72 @@
 import React from "react";
 import { Avatar, ListItemText, List, ListItem, Grid } from "@mui/material";
-import FriendData from '../TempData/FriendData';
+import FriendData from "../TempData/FriendData";
 
 const FriendProfile = ({ friendProfile }) => {
-    const { username, profilePicture, courses, clubs } = friendProfile;
+  const { username, profilePicture, courses, clubs } = friendProfile;
 
-    return (
+  return (
     <Grid
-    container
-    direction="column"
-    justifyContent="center"
-    alignItems="center"
-    spacing={3}
-    style={{
+      container
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+      spacing={3}
+      style={{
         padding: "20px",
         backgroundColor: "#FCF8FF",
         backgroundSize: "cover",
         backgroundPosition: "center",
         minHeight: "100vh",
-    }}
+      }}
     >
-    <Grid item style={{ textAlign: "center" }}>
+      <Grid item style={{ textAlign: "center" }}>
         <h1
-        style={{
+          style={{
             fontFamily: "Baloo Bhaijaan",
             fontSize: "2.5rem",
             color: "#996FD6",
-        }}
+          }}
         >
-        ⟡UQutie⟡
+          ⟡UQutie⟡
         </h1>
         <Avatar
-        alt="Friend Avatar"
-        src={profilePicture}
-        style={{ width: 100, height: 100, margin: "0 auto" }}
+          alt="Friend Avatar"
+          src={profilePicture}
+          style={{ width: 100, height: 100, margin: "0 auto" }}
         />
         <h3 style={{ fontFamily: "Baloo Bhaijaan", color: "#B399DD" }}>
-            {username}
+          {username}
         </h3>
-    </Grid>
+      </Grid>
 
-    <Grid item>
+      <Grid item>
         <h3 style={{ fontFamily: "Baloo Bhaijaan", color: "#996FD6" }}>
-        Current Courses:
+          Current Courses:
         </h3>
         <List>
-        {courses.map((course, index) => (
+          {courses.map((course, index) => (
             <ListItem key={index}>
-            <ListItemText primary={course} />
+              <ListItemText primary={course} />
             </ListItem>
-        ))}
+          ))}
         </List>
-    </Grid>
+      </Grid>
 
-    <Grid item>
+      <Grid item>
         <h3 style={{ fontFamily: "Baloo Bhaijaan", color: "#996FD6" }}>
-        Current Clubs:
+          Current Clubs:
         </h3>
         <List>
-        {clubs.map((club, index) => (
+          {clubs.map((club, index) => (
             <ListItem key={index}>
-            <ListItemText primary={club} />
+              <ListItemText primary={club} />
             </ListItem>
-        ))}
+          ))}
         </List>
-        </Grid>
+      </Grid>
     </Grid>
-    );
+  );
 };
 
 export default FriendProfile;
