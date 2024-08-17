@@ -8,7 +8,7 @@ class Student(db.Model):
   __tablename__ = "Students"
 
   username = db.Column(db.String(36), primary_key = True)
-  email = db.Column(db.String(255), True)
+  email = db.Column(db.String(255), unique = True)
   password = db.Column(db.String(255))
   name = db.Column(db.String(255), nullable = False)
   degree = db.Column(db.String(255), nullable = False)
@@ -26,21 +26,21 @@ class StudentCourses(db.Model): #as each student has multiple courses, hobbies, 
   __tablename__ = "StudentCourses"
 
   SCkey = db.Column(db.String(36), primary_key = True) 
-  sID = db.Column(db.String(255), db.ForeignKey('Students.sID'), nullable = False)
+  username = db.Column(db.String(255), db.ForeignKey('Students.username'), nullable = False)
   course = db.Column(db.String(255))
 
 class StudentHobbies(db.Model):
   __tablename__ = "StudentHobbies"
 
   SHkey = db.Column(db.String(36), primary_key = True) 
-  sID = db.Column(db.String(255), db.ForeignKey('Students.sID'), nullable = False)
+  username = db.Column(db.String(255), db.ForeignKey('Students.username'), nullable = False)
   hobby = db.Column(db.String(1023))
 
 class StudentClubs(db.Model):
   __tablename__ = "StudentClubs"
 
   SClubkey = db.Column(db.String(36), primary_key = True) 
-  sID = db.Column(db.String(255), db.ForeignKey('Students.sID'), nullable = False)
+  username = db.Column(db.String(255), db.ForeignKey('Students.username'), nullable = False)
   club = db.Column(db.String(1023))
 
 
