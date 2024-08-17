@@ -10,8 +10,11 @@ WORKDIR /app
 # Copy the rest of the application
 COPY . /app/.
 
-# Install the dependencies
-RUN pip3 install --no-cache-dir Flask==2.3.2 requests==2.28.1 sqlalchemy==1.4.47
+# Install the dependencies (Seperated to improve caching)
+RUN pip3 install --no-cache-dir Flask==2.3.2 
+RUN pip3 install --no-cache-dir requests==2.28.1 
+RUN pip3 install --no-cache-dir sqlalchemy==1.4.47 
+RUN pip3 install --no-cache-dir Flask-SQLAlchemy==3.0.3
 
 
 # Expose the port (e.g., 8000)

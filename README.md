@@ -7,5 +7,5 @@ The UQutiesConnect Team's Repository
 python3 run.py 8000
 
 ### On Docker
-docker build -t backend .
-docker run -d -p 8000:8000 backend
+sudo docker build -t backend .
+sudo docker run -d -p 8000:8000 backend

@@ -1,3 +1,5 @@
 /flask_app/views/__pycache__/
 /flask_app/__pycache__/
 .venv
+
+/instance/

@@ -7,40 +7,41 @@ from . import db
 class Student(db.Model): 
   __tablename__ = "Students"
 
-  sID = db.Column(db.string(36), primary_key = True)
-  email = db.Column(db.string(255))
-  name = db.Column(db.string(255), nullable = False)
-  degree = db.Column(db.string(255), nullable = False)
+  sID = db.Column(db.String(36), primary_key = True)
+  email = db.Column(db.String(255), unique = True)
+  password = db.Column(db.String(255))
+  name = db.Column(db.String(255), nullable = False)
+  degree = db.Column(db.String(255), nullable = False)
   dateStarted = db.Column(db.DateTime, nullable=False)
 
 class Friendships(db.Model):
   __tablename__ = "Friendships"
 
-  friendshipID = db.Column(db.string(36), primary_key = True)
-  sID1 = db.Column(db.string(255), db.ForeignKey('Students.sID'))
-  sID2 = db.Column(db.string(255), db.ForeignKey('Students.sID'))
+  friendshipID = db.Column(db.String(36), primary_key = True)
+  sID1 = db.Column(db.String(255), db.ForeignKey('Students.sID'))
+  sID2 = db.Column(db.String(255), db.ForeignKey('Students.sID'))
   dateCreated = db.Column(db.DateTime, nullable = False)
 
 class StudentCourses(db.Model): #as each student has multiple courses, hobbies, clubs etc, stored in own table
   __tablename__ = "StudentCourses"
 
-  SCkey = db.Column(db.string(36), primary_key = True) 
-  sID = db.Column(db.string(255), db.ForeignKey('Students.sID'), nullable = False)
-  course = db.Column(db.string(255))
+  SCkey = db.Column(db.String(36), primary_key = True) 
+  sID = db.Column(db.String(255), db.ForeignKey('Students.sID'), nullable = False)
+  course = db.Column(db.String(255))
 
 class StudentHobbies(db.Model):
   __tablename__ = "StudentHobbies"
 
-  SHkey = db.Column(db.string(36), primary_key = True) 
-  sID = db.Column(db.string(255), db.ForeignKey('Students.sID'), nullable = False)
-  hobby = db.Column(db.string(255))
+  SHkey = db.Column(db.String(36), primary_key = True) 
+  sID = db.Column(db.String(255), db.ForeignKey('Students.sID'), nullable = False)
+  hobby = db.Column(db.String(1023))
 
 class StudentClubs(db.Model):
   __tablename__ = "StudentClubs"
 
-  SClubkey = db.Column(db.string(36), primary_key = True) 
-  sID = db.Column(db.string(255), db.ForeignKey('Students.sID'), nullable = False)
-  club = db.Column(db.string(255))
+  SClubkey = db.Column(db.String(36), primary_key = True) 
+  sID = db.Column(db.String(255), db.ForeignKey('Students.sID'), nullable = False)
+  club = db.Column(db.String(1023))
 
 
 
