@@ -9,7 +9,7 @@ POST {{baseUrl}}/createaccount
 Content-Type: application/json
 
 {
-    "username" : "chesey",
+    "username" : "cheesey",
     "email": "a@uq.edu.au",
     "password" : "cool cats",
     "name" : "Arthur Davidson",
