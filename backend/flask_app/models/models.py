@@ -27,27 +27,26 @@ class StudentCourses(db.Model): #as each student has multiple courses, hobbies, 
 
   SCkey = db.Column(db.String(36), primary_key = True) 
   username = db.Column(db.String(255), db.ForeignKey('Students.username'), nullable = False)
-  course = db.Column(db.String(1024))
-
+  course = db.Column(db.String(255))
 class StudentHobbies(db.Model):
   __tablename__ = "StudentHobbies"
 
   SHkey = db.Column(db.String(36), primary_key = True) 
   username = db.Column(db.String(255), db.ForeignKey('Students.username'), nullable = False)
-  hobby = db.Column(db.String(1024))
+  hobby = db.Column(db.String(1023))
 
 class StudentClubs(db.Model):
   __tablename__ = "StudentClubs"
 
   SClubkey = db.Column(db.String(36), primary_key = True) 
   username = db.Column(db.String(255), db.ForeignKey('Students.username'), nullable = False)
-  club = db.Column(db.String(1024))
+  club = db.Column(db.String(255))
 
 
 
 
 ####### EXAMPLE CODE FROM OLD PROJECT FOR EXAMPLE USE ONLY, UPDATE TO FIT OUR NEEDS #######
-
+"""
 # each of these represents a table in the database
 class Users(db.Model):
   __tablename__ = 'users'
@@ -105,3 +104,4 @@ class Comments(db.Model):
   # user_id = db.Column(db.Integer, db.ForeignKey('users.email'))
   recipe_id = db.Column(db.String(36), db.ForeignKey('recipes.id'), nullable=False)
   content = db.Column(db.String(255), nullable=False)
+"""
