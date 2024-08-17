@@ -12,8 +12,8 @@ POST {{baseUrl}}/createaccount
 Content-Type: application/json
 
 {
-    "username": "cheesey",
-    "email": "a@uq.edu.au",
+    "username": "queesy",
+    "email": "b@uq.edu.au",
     "password": "cool cats",
     "name": "Arthur Davidson",
     "degree": "Bachelor of Computer Science",
