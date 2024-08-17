@@ -19,7 +19,7 @@ class Student(db.Model):
 class Friendships(db.Model):
   __tablename__ = "Friendships"
 
-  friendshipID = db.Column(db.Integer(), primary_key = True, autoincrement = True)
+  friendshipID = db.Column(db.Integer, primary_key = True, autoincrement = True)
   username1 = db.Column(db.String(255), db.ForeignKey('Students.username'))
   username2 = db.Column(db.String(255), db.ForeignKey('Students.username'))
   dateCreated = db.Column(db.String(50), nullable = False) #DD-MM-YYYY Format
@@ -27,20 +27,20 @@ class Friendships(db.Model):
 class StudentCourses(db.Model): #as each student has multiple courses, hobbies, clubs etc, stored in own table
   __tablename__ = "StudentCourses"
 
-  SCkey = db.Column(db.String(36), primary_key = True) 
+  SCkey = db.Column(db.Integer, primary_key = True) 
   username = db.Column(db.String(255), db.ForeignKey('Students.username'), nullable = False)
   course = db.Column(db.String(255))
 class StudentHobbies(db.Model):
   __tablename__ = "StudentHobbies"
 
-  SHkey = db.Column(db.String(36), primary_key = True) 
+  SHkey = db.Column(db.Integer, primary_key = True) 
   username = db.Column(db.String(255), db.ForeignKey('Students.username'), nullable = False)
   hobby = db.Column(db.String(1023))
 
 class StudentClubs(db.Model):
   __tablename__ = "StudentClubs"
 
-  SClubkey = db.Column(db.String(36), primary_key = True) 
+  SClubkey = db.Column(db.Integer, primary_key = True) 
   username = db.Column(db.String(255), db.ForeignKey('Students.username'), nullable = False)
   club = db.Column(db.String(255))
 
