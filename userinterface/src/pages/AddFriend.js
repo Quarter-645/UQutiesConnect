@@ -9,7 +9,7 @@ import React, { useState } from "react";
 import {Avatar, ListItemText, List, ListItem, IconButton, 
   TextField, Grid} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import DeleteIcon from "@mui/icons-material/Delete";
+import ClearIcon from '@mui/icons-material/Clear';
 import usernameArray from "../TempData/UserData";
 
 
@@ -22,12 +22,14 @@ const Search = () => {
     setUsernameInput(event.target.value);
   }
 
+  const possibleUsernames = usernameArray.map(user => user.username);
+
   const addFriend = () => {
     const trimmedUsername = usernameInput.trim();
-    
+
     if(
       trimmedUsername &&
-      usernameArray.includes(trimmedUsername) &&
+      possibleUsernames.includes(trimmedUsername) &&
       !usernames.includes(trimmedUsername)
     ) {
       setUsername((prevUsernames) => [...prevUsernames, trimmedUsername]);
@@ -70,10 +72,7 @@ const Search = () => {
           >
             ⟡Add a UQutie⟡
           </h1>
-          <h3 style={{ fontFamily: "Baloo Bhaijaan", color: "#996FD6" }}>
-          Current Friends:
-          </h3>
-          <Grid container spacing={1} alignItems="center">
+          <Grid container spacing={3} alignItems="center">
             <Grid item>
               <TextField
               id="username-input"
@@ -82,18 +81,21 @@ const Search = () => {
               value={usernameInput}
               onChange={handleFriendSearch}
               />
-              {console.log("usernameInput", usernameInput)}
             </Grid>
             <Grid item>
               <IconButton
               aria-label="Add Friend"
               onClick={addFriend}
-              style={{ fontFamily: "Baloo Bhaijaan", color: "#B399DD" }}
+              style={{ fontFamily: "Baloo Bhaijaan", color: "#B399DD"
+               }}
               >
                 <AddIcon />
               </IconButton>
             </Grid>
           </Grid>
+          <h3 style={{ fontFamily: "Baloo Bhaijaan", color: "#996FD6" }}>
+          Current Friends:
+          </h3>
           <List>
             {usernames.map((username, index) => (
               <ListItem
@@ -102,9 +104,9 @@ const Search = () => {
                 <IconButton
                 aria-label="Remove Friend"
                 onClick={() => deleteUsername(username)}
-                style={{ color: "#E3E3E3"}}
+                style={{ color: "#900C3F"}}
                 >
-                  <DeleteIcon />
+                  <ClearIcon />
                 </IconButton>
               }
               >
