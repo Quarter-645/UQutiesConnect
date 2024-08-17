@@ -10,7 +10,7 @@ import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const AddTag = ({ tagData, name }) => {
+const AddTag = ({ tagData, userTags }) => {
   const [tags, setTags] = useState([]);
   const [tagInput, setTagInput] = useState("");
 
@@ -26,7 +26,7 @@ const AddTag = ({ tagData, name }) => {
       !tags.includes(trimmedTag)
     ) {
       setTags((prevTags) => [...prevTags, trimmedTag]);
-      setTagInput(""); // Clear input field after adding
+      setTagInput("");
     } else {
       alert("Tag does not exist or is already added");
     }
@@ -38,9 +38,6 @@ const AddTag = ({ tagData, name }) => {
 
   return (
     <>
-      <h3 style={{ fontFamily: "Baloo Bhaijaan", color: "#996FD6" }}>
-        Current {name}s:
-      </h3>
       <Grid container spacing={1} alignItems="center">
         <Grid item>
           <TextField

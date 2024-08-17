@@ -1,71 +1,27 @@
 import React, { useState } from "react";
-import {
-  Avatar,
-  ListItemText,
-  List,
-  ListItem,
-  IconButton,
-  TextField,
-  Grid,
-} from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-import DeleteIcon from "@mui/icons-material/Delete";
-import CourseCodes from "../TempData/CourseCodes";
-import ClubNames from "../TempData/ClubNames";
+import { Avatar, Grid } from "@mui/material";
+import UserData from "../TempData/UserData";
 import userProfile from "../TempData/UserData";
 import { AddTag } from "../components";
+import TagList from "../components/TagList";
 
 const Profile = () => {
-  const [courses, setCourses] = useState([]);
-  const [clubs, setClubs] = useState([]);
-  const [courseInput, setCourseInput] = useState("");
-  const [clubInput, setClubInput] = useState("");
-
-  const handleCourseChange = (event) => {
-    setCourseInput(event.target.value);
-  };
-
-  const handleClubChange = (event) => {
-    setClubInput(event.target.value);
-  };
-
-  // const addCourse = () => {
-  //   const trimmedCourse = courseInput.trim();
-  //   if (
-  //     trimmedCourse &&
-  //     CourseCodes.includes(trimmedCourse) &&
-  //     !courses.includes(trimmedCourse)
-  //   ) {
-  //     setCourses((prevCourses) => [...prevCourses, trimmedCourse]);
-  //     setCourseInput(""); // Clear input field after adding
-  //   } else {
-  //     alert("Course does not exist or is already added");
-  //   }
-  // };
-
-  const addClub = () => {
-    const trimmedClub = clubInput.trim();
-    if (
-      trimmedClub &&
-      ClubNames.includes(trimmedClub) &&
-      !clubs.includes(trimmedClub)
-    ) {
-      setClubs((prevClubs) => [...prevClubs, trimmedClub]);
-      setClubInput(""); // Clear input field after adding
-    } else {
-      alert("Club does not exist or is already added");
+  const userClubs = UserData.map((user) => {
+    if (user.username === "not_holly") {
+      return user.clubs;
     }
-  };
+    return null;
+  }).filter((clubs) => clubs !== null);
 
-  const deleteCourse = (courseToDelete) => {
-    setCourses((prevCourses) =>
-      prevCourses.filter((course) => course !== courseToDelete)
-    );
-  };
+  const userCourses = UserData.map((user) => {
+    if (user.username === "not_holly") {
+      return user.courses;
+    }
+    return null;
+  }).filter((courses) => courses !== null);
 
-  const deleteClub = (clubToDelete) => {
-    setClubs((prevClubs) => prevClubs.filter((club) => club !== clubToDelete));
-  };
+  // const [isUser, setIsUser] = useState(UserData.username === "not_holly");
+  const [isUser, setIsUser] = useState(true);
 
   return (
     <Grid
@@ -76,16 +32,13 @@ const Profile = () => {
       spacing={3}
       style={{
         padding: "20px",
-        backgroundColor: "#FCF8FF", // Background color
-        backgroundSize: "cover", // Ensure the image covers the container
-        backgroundPosition: "center", // Center the image
-        minHeight: "100vh", // Ensure full viewport height
+        backgroundColor: "#FCF8FF",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        minHeight: "100vh",
       }}
     >
-      <Grid
-        item
-        style={{ textAlign: "center" }} // Center the content inside this Grid item
-      >
+      <Grid item style={{ textAlign: "center" }}>
         <h1
           style={{
             fontFamily: "Baloo Bhaijaan",
@@ -97,8 +50,8 @@ const Profile = () => {
         </h1>
         <Avatar
           alt="User Avatar"
-          src={userProfile.profilePicture} // Use profile picture from userProfile
-          style={{ width: 100, height: 100, margin: "0 auto" }} // Center avatar
+          src={userProfile.profilePicture}
+          style={{ width: 100, height: 100, margin: "0 auto" }}
         />
         <h3 style={{ fontFamily: "Baloo Bhaijaan", color: "#B399DD" }}>
           {userProfile.username}
@@ -106,11 +59,25 @@ const Profile = () => {
       </Grid>
 
       <Grid item>
-        <AddTag tagData={CourseCodes} name={"Course"} />
+        <h3 style={{ fontFamily: "Baloo Bhaijaan", color: "#996FD6" }}>
+          Current Courses:
+        </h3>
+        {isUser ? (
+          <AddTag tagData={userCourses} />
+        ) : (
+          <TagList tagData={userCourses} />
+        )}
       </Grid>
 
       <Grid item>
-        <AddTag tagData={ClubNames} name={"Club"} />
+        <h3 style={{ fontFamily: "Baloo Bhaijaan", color: "#996FD6" }}>
+          Current Clubs:
+        </h3>
+        {isUser ? (
+          <AddTag tagData={userClubs} />
+        ) : (
+          <TagList tagData={userClubs} />
+        )}
       </Grid>
     </Grid>
   );
