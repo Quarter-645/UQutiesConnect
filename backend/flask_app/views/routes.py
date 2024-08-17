@@ -1,10 +1,12 @@
 from flask import Blueprint, jsonify, request #type:ignore
 from flask_app.models import db
 from flask_app.models.models import Student, Friendships
+from flask_bcrypt import Bcrypt
 import re
 from datetime import datetime
 
 api = Blueprint('api', __name__)
+bcrypt = Bcrypt(api)
 
 @api.route('/health')
 def health():
@@ -70,6 +72,18 @@ def createaccount():
 
 @api.route('/login', methods=['POST'])
 def login():
-    getUsername = request.json
+
+    username = request.json.get('username')
+    password = request.json.get('password')
+
+    student = Student.query.filter_by(username = username).first()
+
+    if not student:
+        return jsonify({"error": "Invalid username"}), 401
+    
+    if not bcrypt.check_password_hash(student.password, password):
+        return jsonify({"error": "Invalid password"}), 401
+
+    return jsonify({"message": "Login successful", "username": student.username}), 200
 
 
