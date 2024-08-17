@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request #type:ignore
 from flask_app.models import db
 from flask_app.models.models import Student, Friendships
 import re
@@ -33,11 +33,21 @@ def createaccount():
 
     newAccount = Student( 
         username = request.json.get('username'),
-        email = request.json.get('email'),
+        email = email,
         password = request.json.get('password'),
         name=request.json.get('name'), 
         degree=request.json.get('degree'),
         dateStarted=request.json.get('dateStarted')
     )
-    return newAccount
+
+    # Adds a new record to the database or will update an existing record 
+    db.session.add(Student) 
+    # Commits the changes to the database, this must be called for the changes to be saved 
+    db.session.commit() 
+    return jsonify(Student.to_dict(), {'status': 'ok'}), 201
+
+@api.route('/login', methods=['POST'])
+def login():
+    getUsername = request.json
+
 
