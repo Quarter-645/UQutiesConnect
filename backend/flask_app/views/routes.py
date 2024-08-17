@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request #type:ignore
 from flask_app.models import db
-from flask_app.models.models import Student, Friendships
+from flask_app.models.models import Student, Friendships, StudentClubs, StudentCourses, StudentHobbies
 import re
 from datetime import datetime
 
