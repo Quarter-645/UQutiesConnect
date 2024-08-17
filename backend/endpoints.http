@@ -1,0 +1,15 @@
+@baseUrl = http://localhost:8000
+
+
+### GET HEALTH
+GET {{baseUrl}}/health
+
+### CREATE A NEW FRIENDSHIP
+POST {{baseUrl}}/add_friend
+Content-Type: application/json
+
+{
+    "currentUserUsername" : "cats",
+    "newFriendUsername" : "dogs",
+    "dateCreated" : "2021-01-01"
+}
