@@ -1,9 +1,41 @@
-import React from "react";
-import { Avatar, ListItemText, List, ListItem, Grid } from "@mui/material";
-import FriendData from "../TempData/FriendData";
+import React, { useState } from "react";
+import { Avatar, Button, Grid } from "@mui/material";
+import UserData from "../TempData/UserData";
+import userProfile from "../TempData/UserData";
+import TagList from "../components/TagList";
+import CourseCodes from "../TempData/CourseCodes";
+import ClubNames from "../TempData/ClubNames";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const FriendProfile = ({ friendProfile }) => {
-  const { username, profilePicture, courses, clubs } = friendProfile;
+const FriendProfile = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [isFriend, setFriend] = useState(false);
+
+  const { username } = location.state || {};
+  console.log("username", username);
+
+  const userClubs = UserData.map((user) => {
+    if (user.username === "not_holly") {
+      return user.clubs;
+    }
+    return null;
+  }).filter((clubs) => clubs !== null);
+
+  const userCourses = UserData.map((user) => {
+    if (user.username === "not_holly") {
+      return user.courses;
+    }
+    return null;
+  }).filter((courses) => courses !== null);
+
+  // const [isUser, setIsUser] = useState(UserData.username === "not_holly");
+  const [isUser, setIsUser] = useState(true);
+
+  const handleFriendClick = () => {
+    // navigate("/friend");
+    setFriend(!isFriend);
+  };
 
   return (
     <Grid
@@ -28,42 +60,57 @@ const FriendProfile = ({ friendProfile }) => {
             color: "#996FD6",
           }}
         >
-          ⟡UQutie⟡
+          {userProfile.username}
         </h1>
         <Avatar
-          alt="Friend Avatar"
-          src={profilePicture}
+          alt="User Avatar"
+          src={userProfile.profilePicture}
           style={{ width: 100, height: 100, margin: "0 auto" }}
         />
         <h3 style={{ fontFamily: "Baloo Bhaijaan", color: "#B399DD" }}>
-          {username}
+          {/* {userProfile.username} */}
         </h3>
+        {isFriend ? (
+          <Button
+            variant="contained"
+            onClick={handleFriendClick}
+            sx={{
+              backgroundColor: "#F8C8DC",
+              color: "#grey",
+              fontWeight: "bold",
+              "&:hover": { backgroundColor: "#FFC0CB" },
+            }}
+          >
+            Remove Friend
+          </Button>
+        ) : (
+          <Button
+            variant="contained"
+            onClick={handleFriendClick}
+            sx={{
+              backgroundColor: "#B399DD",
+              color: "#grey",
+              fontWeight: "bold",
+              "&:hover": { backgroundColor: "#996FD6" },
+            }}
+          >
+            Add Friend
+          </Button>
+        )}
       </Grid>
 
       <Grid item>
         <h3 style={{ fontFamily: "Baloo Bhaijaan", color: "#996FD6" }}>
           Current Courses:
         </h3>
-        <List>
-          {courses.map((course, index) => (
-            <ListItem key={index}>
-              <ListItemText primary={course} />
-            </ListItem>
-          ))}
-        </List>
+        <TagList tagData={CourseCodes} />
       </Grid>
 
       <Grid item>
         <h3 style={{ fontFamily: "Baloo Bhaijaan", color: "#996FD6" }}>
           Current Clubs:
         </h3>
-        <List>
-          {clubs.map((club, index) => (
-            <ListItem key={index}>
-              <ListItemText primary={club} />
-            </ListItem>
-          ))}
-        </List>
+        <TagList tagData={ClubNames} />
       </Grid>
     </Grid>
   );

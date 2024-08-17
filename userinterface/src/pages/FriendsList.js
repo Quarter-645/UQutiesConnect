@@ -29,12 +29,12 @@ const Home = () => {
           minHeight: "100vh",
         }}
       >
-        <Grid item>
+        <Grid item xs={8}>
           <h2 style={{ fontFamily: "Baloo Bhaijaan", color: "#996FD6" }}>
-            Your new connections...
+            Your old connections...
           </h2>
         </Grid>
-        <Grid item>
+        <Grid item xs={4}>
           <Button
             variant="contained"
             sx={{
@@ -42,29 +42,13 @@ const Home = () => {
               color: "#grey",
               fontWeight: "bold",
               textTransform: "none",
-              marginRight: "10px",
               "&:hover": { backgroundColor: "#996FD6" },
             }}
-            onClick={() => navigate("/friends-list")}
+            onClick={() => navigate("/home")}
           >
-            UrQuties
-          </Button>
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "#B399DD",
-              color: "#grey",
-              fontWeight: "bold",
-              textTransform: "none",
-              marginLeft: "10px",
-              "&:hover": { backgroundColor: "#996FD6" },
-            }}
-            onClick={() => navigate("/add-friend")}
-          >
-            Find Friends
+            Find UQuties
           </Button>
         </Grid>
-
         {FriendData.map((friend, index) => (
           <Grid item xs={12} key={index} sx={{ textAlign: "center" }}>
             <Button

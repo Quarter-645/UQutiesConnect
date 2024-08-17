@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import { Box, Button, Grid, TextField } from "@mui/material";
 import { Password, Logo } from "../components";
 
 const Login = () => {
@@ -34,6 +34,7 @@ const Login = () => {
       justifyContent="center"
       alignItems="center"
       height="100vh"
+      sx={{ backgroundColor: "#FCF8FF" }}
     >
       <form onSubmit={handleSubmit}>
         <Grid
@@ -51,6 +52,7 @@ const Login = () => {
               id="outlined-basic"
               label="Email"
               variant="outlined"
+              required
               onChange={(event) =>
                 handleFieldChange("email", event.target.value)
               }
@@ -60,12 +62,22 @@ const Login = () => {
             <Password handleChange={handleFieldChange} />
           </Grid>
           <Grid item xs={12}>
-            <Button variant="contained" type="submit">
+            <Button
+              variant="contained"
+              type="submit"
+              sx={{
+                backgroundColor: "#B399DD",
+                color: "#grey",
+                fontWeight: "bold",
+                "&:hover": { backgroundColor: "#996FD6" },
+              }}
+            >
               Confirm
             </Button>
           </Grid>
           <Grid item xs={12}>
             <Button
+              sx={{ color: "#996FD6", fontWeight: "bold" }}
               variant="text"
               size="small"
               onClick={() => navigate("/register")}
