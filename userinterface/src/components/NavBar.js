@@ -55,7 +55,7 @@ function NavBar() {
             icon={<HomeIcon sx={{ color: "#996FD6" }} />}
           />
           <BottomNavigationAction
-            label="No Page"
+            label="Timetable Matching"
             icon={<FavoriteIcon sx={{ color: "#996FD6" }} />}
           />
           <BottomNavigationAction

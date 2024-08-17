@@ -1,8 +1,7 @@
 import NavBar from "./NavBar";
 import Password from "./Password";
-import UserProfile from "./UserProfile";
-import FixedProfile from "./FixedProfile";
 import Logo from "./Logo";
 import AddTag from "./AddTag";
+import TopBar from "./TopBar";
 
-export { NavBar, Password, UserProfile, FixedProfile, Logo, AddTag };
+export { NavBar, Password, Logo, AddTag, TopBar };
