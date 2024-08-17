@@ -6,6 +6,7 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import RestoreIcon from "@mui/icons-material/Restore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import HomeIcon from '@mui/icons-material/Home';
 
 const paths = ["/home", "/no-page", "/profile"];
 
@@ -30,17 +31,29 @@ function NavBar() {
   return (
     <>
       <Box
-        sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+        sx={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 1100 }}
         elevation={3}
       >
         <BottomNavigation
           showLabels
           value={selectedPage}
           onChange={handleChange}
+          sx={{
+            bgcolor: '#e3d9ea',
+            '& .Mui-selected': {
+              color: '#996FD6', // Color of the selected BottomNavigationAction
+            },
+            '& .MuiBottomNavigationAction-icon': {
+              color: '#996FD6', // Icon color for unselected BottomNavigationAction
+            },
+            '& .Mui-selected .MuiBottomNavigationAction-icon': {
+              color: '#996FD6', // Icon color for selected BottomNavigationAction
+            }
+          }}
         >
-          <BottomNavigationAction label="Home" icon={<RestoreIcon />} />
-          <BottomNavigationAction label="No Page" icon={<FavoriteIcon />} />
-          <BottomNavigationAction label="Profile" icon={<AccountBoxIcon />} />
+          <BottomNavigationAction label="Home" icon={<HomeIcon sx={{ color: '#996FD6' }}/>} />
+          <BottomNavigationAction label="No Page" icon={<FavoriteIcon sx={{ color: '#996FD6' }}/>} />
+          <BottomNavigationAction label="Profile" icon={<AccountBoxIcon sx={{ color: '#996FD6' }}/>} />
         </BottomNavigation>
       </Box>
       <Outlet />
