@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_app.models import db
-from flask_app.models.models import Student, Friendship
+from flask_app.models.models import Student, Friendships
 import re
 
 api = Blueprint('api', __name__)
