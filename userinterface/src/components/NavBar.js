@@ -6,6 +6,7 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import RestoreIcon from "@mui/icons-material/Restore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 function NavBar({ pages, onSelectPage }) {
   const [selectedPage, setSelectedPage] = useState(0);
@@ -13,7 +14,7 @@ function NavBar({ pages, onSelectPage }) {
 
   const handleChange = (event, newPage) => {
     setSelectedPage(newPage);
-    const paths = ["/home", "/no-page", "/login"];
+    const paths = ["/home", "/no-page", "/login", "/profile"];
     navigate(paths[newPage]);
   };
 
@@ -31,6 +32,7 @@ function NavBar({ pages, onSelectPage }) {
           <BottomNavigationAction label="Home" icon={<RestoreIcon />} />
           <BottomNavigationAction label="No Page" icon={<FavoriteIcon />} />
           <BottomNavigationAction label="Login" icon={<LocationOnIcon />} />
+          <BottomNavigationAction label="Profile" icon={<AccountBoxIcon />} />
         </BottomNavigation>
       </Box>
       <Outlet />

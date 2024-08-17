@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { NoPage, Login, Home } from "./pages";
+import { NoPage, Login, Home, Profile, FriendProfile } from "./pages";
 import NavBar from "./components";
 
 function App() {
@@ -12,6 +12,8 @@ function App() {
             <Route index element={<Login />} />
             <Route path="Home" element={<Home />} />
             <Route path="*" element={<NoPage />} />
+            <Route path="Friend" element={<FriendProfile />} />
+            <Route path = "Profile" element={<Profile />} />
           </Route>
         </Routes>
       </BrowserRouter>
