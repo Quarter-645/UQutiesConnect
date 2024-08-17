@@ -4,5 +4,6 @@ import Home from "./Home";
 import Profile from "./Profile";
 import Register from "./Register";
 import FriendProfile from "./FriendProfile";
+import FriendsList from "./FriendsList";
 
-export { NoPage, Login, Home, Profile, Register, FriendProfile };
+export { NoPage, Login, Home, Profile, Register, FriendProfile, FriendsList };

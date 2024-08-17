@@ -31,7 +31,7 @@ const Home = () => {
       >
         <Grid item xs={8}>
           <h2 style={{ fontFamily: "Baloo Bhaijaan", color: "#996FD6" }}>
-            Your new connections...
+            Your old connections...
           </h2>
         </Grid>
         <Grid item xs={4}>
@@ -44,9 +44,9 @@ const Home = () => {
               textTransform: "none",
               "&:hover": { backgroundColor: "#996FD6" },
             }}
-            onClick={() => navigate("/friends-list")}
+            onClick={() => navigate("/home")}
           >
-            UrQuties
+            Find UQuties
           </Button>
         </Grid>
         {FriendData.map((friend, index) => (

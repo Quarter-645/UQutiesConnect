@@ -1,6 +1,14 @@
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { NoPage, Login, Home, Profile, Register, FriendProfile } from "./pages";
+import {
+  NoPage,
+  Login,
+  Home,
+  Profile,
+  Register,
+  FriendProfile,
+  FriendsList,
+} from "./pages";
 import { NavBar } from "./components";
 
 function App() {
@@ -16,6 +24,7 @@ function App() {
             <Route path="*" element={<NoPage />} />
             <Route path="Friend" element={<FriendProfile />} />
             <Route path="Profile" element={<Profile />} />
+            <Route path="Friends-list" element={<FriendsList />} />
           </Route>
         </Routes>
       </BrowserRouter>
