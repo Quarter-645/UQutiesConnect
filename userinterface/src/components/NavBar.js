@@ -1,19 +1,29 @@
-import React, { useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import RestoreIcon from "@mui/icons-material/Restore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 
-function NavBar({ pages, onSelectPage }) {
+const paths = ["/home", "/no-page", "/profile"];
+
+function NavBar() {
   const [selectedPage, setSelectedPage] = useState(0);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const currentPath = location.pathname;
+    const newPage = paths.indexOf(currentPath);
+    if (newPage !== -1) {
+      setSelectedPage(newPage);
+    }
+  }, [location.pathname]);
 
   const handleChange = (event, newPage) => {
     setSelectedPage(newPage);
-    const paths = ["/home", "/no-page", "/profile"];
     navigate(paths[newPage]);
   };
 
@@ -30,7 +40,7 @@ function NavBar({ pages, onSelectPage }) {
         >
           <BottomNavigationAction label="Home" icon={<RestoreIcon />} />
           <BottomNavigationAction label="No Page" icon={<FavoriteIcon />} />
-          <BottomNavigationAction label="Profile" icon={<LocationOnIcon />} />
+          <BottomNavigationAction label="Profile" icon={<AccountBoxIcon />} />
         </BottomNavigation>
       </Box>
       <Outlet />
