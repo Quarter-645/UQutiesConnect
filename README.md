@@ -21,4 +21,3 @@ List Tables:
 
 View Table Schema
 .schema TABLE_NAME
-
