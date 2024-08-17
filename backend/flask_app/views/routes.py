@@ -1,12 +1,10 @@
 from flask import Blueprint, jsonify, request #type:ignore
 from flask_app.models import db
 from flask_app.models.models import Student, Friendships
-from flask_bcrypt import Bcrypt
 import re
 from datetime import datetime
 
 api = Blueprint('api', __name__)
-bcrypt = Bcrypt(api)
 
 @api.route('/health')
 def health():
@@ -46,6 +44,29 @@ def addFriend():
 
     return jsonify({"status": "friendship created"}), 201
 
+@api.route('/remove_friend', methods=['POST'])
+def removeFriend():
+    data = request.get_json()
+
+    currentUserUsername = data.get('currentUserUsername')
+    friendUsername = data.get('friendUsername')
+
+    friendship = (
+        db.session.query(Friendships)
+        .filter(
+            ((Friendships.username1 == currentUserUsername) & (Friendships.username2 == friendUsername)) |
+            ((Friendships.username2 == currentUserUsername) & (Friendships.username1 == friendUsername))
+        )
+        .first()
+    )
+
+    if not friendship:
+        return jsonify({'error': 'Friendship does not exist'}), 404
+    
+    db.session.delete(friendship)
+    db.session.commit()
+    return jsonify({"status": "friendship removed"}), 200
+
 #request.get
 @api.route('/createaccount', methods=['POST'])
 def createaccount():
@@ -80,9 +101,6 @@ def login():
 
     if not student:
         return jsonify({"error": "Invalid username"}), 401
-    
-    if not bcrypt.check_password_hash(student.password, password):
-        return jsonify({"error": "Invalid password"}), 401
 
     return jsonify({"message": "Login successful", "username": student.username}), 200
 

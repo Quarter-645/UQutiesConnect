@@ -25,3 +25,12 @@ Content-Type: application/json
     "currentUserUsername" : "cats",
     "newFriendUsername" : "dogs"
 }
+
+### DELETE A FRIENDSHIP
+POST {{baseUrl}}/remove_friend
+Content-Type: application/json
+
+{
+    "currentUserUsername" : "cats",
+    "friendUsername" : "dogs"
+}
