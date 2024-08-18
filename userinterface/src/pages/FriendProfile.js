@@ -61,7 +61,7 @@ const FriendProfile = () => {
             color: "#996FD6",
           }}
         >
-          {userProfile.username}
+          {username}
         </h1>
         <Avatar
           alt="User Avatar"
