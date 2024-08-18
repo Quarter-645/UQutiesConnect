@@ -1,13 +1,34 @@
 const BASE_URL = "http://localhost:8000";
 
+// GET USERS
+
+export const getAllUsers = async () => {
+    try {
+        const response = await fetch(`${BASE_URL}/get_users`);
+        if (response.ok) {
+            const res = await response.json();
+            console.log("Get Users", res);
+            return res;
+        } else {
+            const errorData = await response.json();
+            console.error("Failed to Get Users:", errorData.error);
+            throw new Error(errorData.error);
+        }
+
+    } catch (error) {
+        console.error("Error Getting Friends:", error.message);
+        throw error;
+    }
+}
+
 // ADD FRIEND
 
-export const addFriend = async (currentUserUsername, newFriendUsername) => {
-  try {
-    const payload = {
-      currentUserUsername: currentUserUsername,
-      newFriendUsername: newFriendUsername,
-    };
+export const addFriendCall = async (currentUserUsername, newFriendUsername) => {
+    try {
+        const payload = {
+            currentUserUsername: currentUserUsername,
+            newFriendUsername: newFriendUsername
+        }
 
     const response = await fetch(`${BASE_URL}/add_friend`, {
       method: "POST",
@@ -35,11 +56,11 @@ export const addFriend = async (currentUserUsername, newFriendUsername) => {
 // REMOVE FRIEND
 
 export const removeFriend = async (currentUserUsername, friendUsername) => {
-  try {
-    const payload = {
-      currentUserUsername: currentUserUsername,
-      newFriendUsername: friendUsername,
-    };
+    try {
+        const payload = {
+            currentUserUsername: currentUserUsername,
+            friendUsername: friendUsername
+        }
 
     const response = await fetch(`${BASE_URL}/remove_friend`, {
       method: "POST",
