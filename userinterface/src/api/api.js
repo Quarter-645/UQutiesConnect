@@ -2,7 +2,7 @@ const BASE_URL = "http://localhost:8000";
 
 // ADD FRIEND
 
-export const addFriend = async (currentUserUsername, newFriendUsername) => {
+export const addFriendCall = async (currentUserUsername, newFriendUsername) => {
     try {
         const payload = {
             currentUserUsername: currentUserUsername,

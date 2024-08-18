@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Avatar,
   ListItemText,
@@ -11,49 +11,50 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import userProfile from "../TempData/UserData";
 import { Logo } from "../components";
-import { removeFriend, addFriend, getFriends } from "../api/api";
+import { getFriends, addFriendCall, removeFriend } from "../api/api";
 
 const Search = () => {
-  const [usernames, setUsername] = useState([]);
+  const USER_USERNAME = "dogs";
+  const [usernames, setUsernames] = useState([]);
   const [usernameInput, setUsernameInput] = useState("");
+  const [isFriend, setIsFriend] = useState(false);
+
+  useEffect(() => {
+    const loadFriends = async () => {
+      try {
+        const friends = await getFriends(USER_USERNAME);
+        setIsFriend(friends.includes(usernameInput.trim()));
+      } catch (error) {
+        console.error("Error getting list of friends:", error.message);
+      }
+    };
+    
+    // Only load friends when usernameInput changes
+    if (usernameInput.trim()) {
+      loadFriends();
+    }
+  }, [USER_USERNAME, usernameInput]);
 
   const handleFriendSearch = (event) => {
     setUsernameInput(event.target.value);
   };
 
-  // const possibleUsernames = usernameArray.map((user) => user.username);
+  const addFriend = async () => {
+    const FRIEND_USERNAME = usernameInput.trim();
 
-  const addFriend = () => {
-    const ASSUMED_USERNAME = "dogs"
-    
-    const trimmedUsername = usernameInput.trim();
-
-    const existingFriends = getFriends("dogs");
-
-    try {
-      if (existingFriends.includes(trimmedUsername)) {
-        removeFriend(ASSUMED_USERNAME, trimmedUsername);
-      } else {
-        addFriend(ASSUMED_USERNAME, trimmedUsername);
-      }
-    } catch (error) {
-      console.error("Error setting friend state:", error.message);
-    }
-    
-
-    if (usernames.includes(trimmedUsername)) {
-      alert("Friend is already added.");
+    if (isFriend) {
+      removeFriend(USER_USERNAME, FRIEND_USERNAME);
     } else if (
-      trimmedUsername &&
-      userProfile.some((user) => user.username === trimmedUsername)
+      FRIEND_USERNAME &&
+      userProfile.some((user) => user.username === FRIEND_USERNAME)
     ) {
-      setUsername((prevUsernames) => [...prevUsernames, trimmedUsername]);
+      setUsernames((prevUsernames) => [...prevUsernames, FRIEND_USERNAME]);
       setUsernameInput("");
     } else {
       alert("Username does not exist.");
     }
-    // console.log("usernames", usernames);
   };
+
   return (
     <Grid
       container
