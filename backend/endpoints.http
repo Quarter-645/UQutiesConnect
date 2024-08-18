@@ -15,12 +15,10 @@ POST {{baseUrl}}/createaccount
 Content-Type: application/json
 
 {
-    "username": "cheesey",
-    "email": "arthur@uq.edu.au",
+    "username": "peezey",
+    "email": "aasdfrthur@uq.edu.au",
     "password": "arthurpassword",
-    "name": "Arthur Osorio",
-    "degree": "Bachelor of Computer Science",
-    "dateStarted": "2023-08-17"
+    "name": "Arthur Osorio"
 }
 
 ### CREATE SECOND TEST ACCOUNT
@@ -28,9 +26,9 @@ POST {{baseUrl}}/createaccount
 Content-Type: application/json
 
 {
-    "username": "miquellasimp",
-    "email": "malenia@uq.edu.au",
-    "password": "iammaleniabladeofmiquella",
+    "username": "dogs",
+    "email": "dog@uq.edu.au",
+    "password": "dogs",
     "name": "Malenia Marikason",
     "degree": "Bachelor of Scarlet Rot",
     "dateStarted": "2023-08-17"
@@ -54,8 +52,8 @@ POST {{baseUrl}}/login
 Content-Type: application/json
 
 {
-    "email": "arthur@uq.edu.au",
-    "password": "arthurpassword"
+    "email": "dog@uq.edu.au",
+    "password": "dogs"
 }
 
 ###NONEXISTANT STUDENT LOGIN TEST
@@ -100,7 +98,7 @@ Post {{baseUrl}}/add_course
 Content-Type: application/json
 
 {
-    "currentUserUsername" : "bigdog",
+    "currentUserUsername" : "DOGS",
     "courseCode" : "CSSE1001"
  }
     
@@ -112,5 +110,32 @@ Content-Type: application/json
 {
     "currentUserUsername" : "bigdog",
     "courseCode" : "CSSE1001"
- }
+}
+
+### Add a hobby for a Student
+Post {{baseUrl}}/add_hobby
+Content-Type: application/json
+
+{
+    "currentUserUsername" : "Cheesey",
+    "hobby" : "Skiing"
+}
+
+### Add a Club for a Student
+Post {{baseUrl}}/add_club
+Content-Type: application/json
+
+{
+    "currentUserUsername" : "DOGS",
+    "club" : "LIT"
+}
         
+
+### Recommended Friends
+POST {{baseUrl}}/recomended_friends 
+Content-Type: application/json
+
+{
+    "currentUserUsername" : "DOGS"
+}
+      

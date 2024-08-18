@@ -1,35 +1,37 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Grid, TextField } from "@mui/material";
-import { Password, Logo } from "../components";
+import { Logo, Password } from "../components";
+import { createAccount } from "../api/api";
 
 const Register = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    name: "",
-    degree: "",
-    dateCommenced: "",
-  });
-  const [isSuccess, setSuccess] = useState(true);
+  const initialFormData = {
+    email: null,
+    password: null,
+    username: null,
+    name: null,
+  };
+  const [formData, setFormData] = useState(initialFormData);
+  // const [loading, setLoading] = useState(true);
+  const [isSuccess, setSuccess] = useState(false);
 
   const handleFieldChange = (fieldName, value) => {
     setFormData({ ...formData, [fieldName]: value });
   };
 
   const handleSubmit = async (event) => {
-    console.log("Form Data:", formData);
     event.preventDefault();
-
-    // registration logic
-
-    // assume success
-    if (isSuccess) {
+    const { email, password, username, name } = formData;
+    try {
+      var response = await createAccount(username, password, email, name);
+      console.log("Form Data:", formData);
+      setSuccess(true);
       navigate("/profile");
-    } else {
-      alert("Registration failed!");
+    } catch (error) {
+      console.error("Failed to create account:", error);
+      alert(`Registration failed! ${error}`);
+      setSuccess(false);
     }
   };
 
@@ -50,7 +52,16 @@ const Register = () => {
           alignItems="center"
         >
           <Grid item xs={12}>
-            <Logo />
+            {/* <Logo /> */}
+            <h2
+              style={{
+                fontFamily: "Baloo Bhaijaan",
+                color: "#996FD6",
+                marginTop: "70px",
+              }}
+            >
+              Register
+            </h2>
           </Grid>
           <Grid item xs={12}>
             <TextField
@@ -124,12 +135,12 @@ const Register = () => {
               Register
             </Button>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} marginBottom={"60px"}>
             <Button
               sx={{ color: "#996FD6", fontWeight: "bold" }}
               variant="text"
               size="small"
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/")}
             >
               Back to Login
             </Button>
