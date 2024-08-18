@@ -129,7 +129,7 @@ const Register = () => {
               sx={{ color: "#996FD6", fontWeight: "bold" }}
               variant="text"
               size="small"
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/")}
             >
               Back to Login
             </Button>
