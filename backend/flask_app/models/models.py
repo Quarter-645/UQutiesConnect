@@ -11,8 +11,8 @@ class Student(db.Model):
   email = db.Column(db.String(255), unique = True)
   password = db.Column(db.String(255))
   name = db.Column(db.String(255), nullable = False)
-  degree = db.Column(db.String(255), nullable = False)
-  dateStarted = db.Column(db.String(50), nullable=False) #DD-MM-YYYY Format
+  degree = db.Column(db.String(255), nullable = True)
+  dateStarted = db.Column(db.String(50), nullable=True) #DD-MM-YYYY Format
 
 
 

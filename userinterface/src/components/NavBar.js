@@ -5,9 +5,11 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import AddIcon from "@mui/icons-material/Add";
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import HomeIcon from "@mui/icons-material/Home";
 
-const paths = ["/home", "/no-page", "/profile"];
+const paths = ["/home", "/timetable", "/profile"];
 
 function NavBar() {
   const [selectedPage, setSelectedPage] = useState(0);
@@ -55,8 +57,8 @@ function NavBar() {
             icon={<HomeIcon sx={{ color: "#996FD6" }} />}
           />
           <BottomNavigationAction
-            label="No Page"
-            icon={<FavoriteIcon sx={{ color: "#996FD6" }} />}
+            label="Timetable Matching"
+            icon={<CalendarMonthIcon sx={{ color: "#996FD6" }} />}
           />
           <BottomNavigationAction
             label="Profile"
