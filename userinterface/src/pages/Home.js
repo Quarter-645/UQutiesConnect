@@ -58,7 +58,7 @@ const Home = () => {
               textTransform: "none",
               marginRight: "10px",
               "&:hover": { backgroundColor: "#996FD6" },
-              boxShadow: "none", // Remove shadow from button
+              boxShadow: "none",
             }}
             onClick={handleClick}
           >
@@ -73,16 +73,21 @@ const Home = () => {
               textTransform: "none",
               marginLeft: "10px",
               "&:hover": { backgroundColor: "#996FD6" },
-              boxShadow: "none", // Remove shadow from button
+              boxShadow: "none",
             }}
-            onClick={handleClick}
+            onClick={() => navigate("/add-friend")}
           >
             Add Friends
           </Button>
         </Grid>
 
         {FriendData.map((friend, index) => (
-          <Grid item xs={12} key={index} sx={{ textAlign: "center", boxShadow: "none" }}>
+          <Grid
+            item
+            xs={12}
+            key={index}
+            sx={{ textAlign: "center", boxShadow: "none" }}
+          >
             <MiniProfile friend={friend} />
           </Grid>
         ))}
