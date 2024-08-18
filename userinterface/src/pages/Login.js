@@ -8,9 +8,10 @@ const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: null,
-    password: null
+    password: null,
   });
   const [isLoginSuccess, setLoginSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const handleFieldChange = (fieldName, value) => {
     setFormData({ ...formData, [fieldName]: value });
@@ -29,14 +30,8 @@ const Login = () => {
     } catch (error) {
       console.error("Failed to login:", error);
       setLoginSuccess(false);
+      alert(`Failed to login: ${error}`);
     }
-
-    // assume success
-    // if (isLoginSuccess) {
-    //   navigate("/home");
-    // } else {
-    //   alert("Login failed!");
-    // }
   };
 
   return (

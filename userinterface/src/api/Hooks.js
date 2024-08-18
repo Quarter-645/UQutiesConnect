@@ -1,10 +1,46 @@
 import { useState, useEffect, useContext } from "react";
 
-import { 
-    addFriend, 
-    removeFriend,
-    getFriends,
-} from "./api";
+import { addFriend, removeFriend, getFriends, getUser } from "./api";
+
+const userID = "email@uq.edu.au";
+
+export const useGetFriendsByUsername = (currentUserUsername) => {
+  const [friendsData, setFriendsData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchFriends = async () => {
+      const data = await getFriends(userID);
+      if (data) {
+        setFriendsData(data);
+      }
+      setLoading(false);
+    };
+
+    fetchFriends();
+  }, []);
+
+  return { friendsData, loading };
+};
+
+export const useGetUserByUsername = (username) => {
+  const [userData, setUserData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const data = await getUser(username);
+      if (data) {
+        setUserData(data);
+      }
+      setLoading(false);
+    };
+
+    fetchUser();
+  }, []);
+
+  return { userData, loading };
+};
 
 /*
 export const useFriendToggle = (currentUserUsername, friendUsername) => {

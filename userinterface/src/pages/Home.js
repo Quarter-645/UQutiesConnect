@@ -3,12 +3,21 @@ import { Grid, Button } from "@mui/material";
 import FriendData from "../TempData/FriendData";
 import { TopBar, MiniProfile } from "../components";
 import { useNavigate } from "react-router-dom";
+import { useGetFriendsByUsername, useGetUserByUsername } from "../api/Hooks";
+
+const userID = "user";
 
 const Home = () => {
   const navigate = useNavigate();
   const [index, setIndex] = useState(0);
   const titles = ["Your new connections...", "Your old connections..."];
   const buttons = ["UrQuties", "Find UQuties"];
+
+  const { friendsData } = useGetFriendsByUsername(userID);
+  const { userData } = useGetUserByUsername("name1");
+
+  console.log("friendsData", friendsData);
+  console.log("userData", userData);
 
   const handleClick = () => {
     // navigate("/add-friend");

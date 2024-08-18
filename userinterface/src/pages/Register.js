@@ -6,13 +6,14 @@ import { createAccount } from "../api/api";
 
 const Register = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     email: null,
     password: null,
     username: null,
     name: null,
-  });
-
+  };
+  const [formData, setFormData] = useState(initialFormData);
+  // const [loading, setLoading] = useState(true);
   const [isSuccess, setSuccess] = useState(false);
 
   const handleFieldChange = (fieldName, value) => {
@@ -24,23 +25,13 @@ const Register = () => {
     const { email, password, username, name } = formData;
     try {
       var response = await createAccount(username, password, email, name);
+      console.log("Form Data:", formData);
       setSuccess(true);
       navigate("/profile");
     } catch (error) {
       console.error("Failed to create account:", error);
+      alert(`Registration failed! ${error}`);
       setSuccess(false);
-    }
-    console.log("Form Data:", formData);
-
-    console.log(response);
-
-    // registration logic
-
-    // assume success
-    if (isSuccess) {
-      navigate("/profile");
-    } else {
-      alert("Registration failed!");
     }
   };
 
@@ -149,7 +140,7 @@ const Register = () => {
               sx={{ color: "#996FD6", fontWeight: "bold" }}
               variant="text"
               size="small"
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/")}
             >
               Back to Login
             </Button>
