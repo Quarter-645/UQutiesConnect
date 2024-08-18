@@ -1,6 +1,12 @@
 import { useState, useEffect, useContext } from "react";
 
-import { addFriend, removeFriend, getFriends, getUser, getRecommendedFriends } from "./api";
+import {
+  addFriend,
+  removeFriend,
+  getFriends,
+  getUser,
+  getRecommendedFriends,
+} from "./api";
 
 const userID = "email@uq.edu.au";
 
@@ -24,23 +30,23 @@ export const useGetFriendsByUsername = (currentUserUsername) => {
 };
 
 export const useGetRecommendedFriends = () => {
-    const [recommendedFriendsData, setRecommendedFriendsData] = useState([]);
-    const [loading, setLoading] = useState(true);
-  
-    useEffect(() => {
-      const fetchRecommendedFriends = async () => {
-        const data = await getRecommendedFriends;
-        if (data) {
-            setRecommendedFriendsData(data);
-        }
-        setLoading(false);
-      };
-  
-      fetchRecommendedFriends();
-    }, []);
-  
-    return { recommendedFriendsData, loading };
-  };
+  const [recommendedFriendsData, setRecommendedFriendsData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchRecommendedFriends = async () => {
+      const data = await getRecommendedFriends;
+      if (data) {
+        setRecommendedFriendsData(data);
+      }
+      setLoading(false);
+    };
+
+    fetchRecommendedFriends();
+  }, []);
+
+  return { recommendedFriendsData, loading };
+};
 
 export const useGetUserByUsername = (username) => {
   const [userData, setUserData] = useState([]);
@@ -48,11 +54,15 @@ export const useGetUserByUsername = (username) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const data = await getUser(username);
-      if (data) {
-        setUserData(data);
+      try {
+        const data = await getUser(username);
+        if (data) {
+          setUserData(data);
+        }
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
       }
-      setLoading(false);
     };
 
     fetchUser();
