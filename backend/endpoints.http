@@ -4,8 +4,11 @@
 ### GET HEALTH
 GET {{baseUrl}}/health
 
+### GET Users
+GET {{baseUrl}}/get_users
+
 ### GET FRIENDSHIPS
-GET {{baseUrl}}/get_friends/cats
+GET {{baseUrl}}/get_friends/dogs
 
 ### GET FRIENDSHIPS
 GET {{baseUrl}}/get_friends/cats
@@ -80,8 +83,8 @@ POST {{baseUrl}}/add_friend
 Content-Type: application/json
 
 {
-    "currentUserUsername" : "cats",
-    "newFriendUsername" : "weirdo"
+    "currentUserUsername" : "dogs",
+    "newFriendUsername" : "cats"
 }
 
 ### DELETE A FRIENDSHIP
@@ -89,8 +92,8 @@ POST {{baseUrl}}/remove_friend
 Content-Type: application/json
 
 {
-    "currentUserUsername" : "cats",
-    "friendUsername" : "dogs"
+    "currentUserUsername" : "dogs",
+    "friendUsername" : "test"
 }
 
 ### ADD A COURSE FOR A STUDENT
