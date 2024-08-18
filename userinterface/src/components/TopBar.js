@@ -9,21 +9,21 @@ const TopBar = () => {
         <Toolbar
           sx={{
             display: "flex",
-            alignItems: "center", // Center vertically
+            alignItems: "center",
             backgroundColor: "#e3d9ea",
-            height: "70px", // Adjust the height here
+            height: "70px",
           }}
         >
           <Box
             component="img"
             src={Logo}
             alt="UQutie Logo"
-            sx={{ width: 60, height: 60, borderRadius: 1 }} // Adjust size as needed
+            sx={{ width: 60, height: 50, borderRadius: 1 }}
           />
           <Box
             sx={{
-              marginLeft: 1, // Space between image and text
-              fontSize: "1.5 rem", // Adjust font size as needed
+              marginLeft: 1,
+              fontSize: "1.5 rem",
               fontFamily: "Baloo Bhaijaan",
               color: "#996FD6",
             }}

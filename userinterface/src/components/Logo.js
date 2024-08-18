@@ -13,7 +13,7 @@ const Logo = () => {
       <Box
         component="img"
         sx={{
-          height: 100,
+          height: 80,
           width: 100,
         }}
         alt="UQuties"
