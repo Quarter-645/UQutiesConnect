@@ -6,7 +6,7 @@ import Logo from "../assets/UQutieLogo.png";
 
 
 import React, { useState } from "react";
-import {Avatar, ListItemText, List, ListItem, IconButton, 
+import {Avatar, ListItemText, ListItemAvatar, List, ListItem, IconButton, 
   TextField, Grid} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import ClearIcon from '@mui/icons-material/Clear';
@@ -15,7 +15,7 @@ import usernameArray from "../TempData/UserData";
 
 
 const Search = () => {
-  const [usernames, setUsername] = useState([]);
+  const [usernames, setUsernames] = useState([]);
   const [usernameInput, setUsernameInput] = useState("");
 
   const handleFriendSearch = (event) => {
@@ -32,7 +32,7 @@ const Search = () => {
       possibleUsernames.includes(trimmedUsername) &&
       !usernames.includes(trimmedUsername)
     ) {
-      setUsername((prevUsernames) => [...prevUsernames, trimmedUsername]);
+      setUsernames((prevUsernames) => [...prevUsernames, trimmedUsername]);
       setUsernameInput("");
     } else {
       alert("Username does not exist or is friend is already added.")
@@ -40,9 +40,11 @@ const Search = () => {
   }
   
   const deleteUsername = (usernameToDelete) => {
-    setUsername((prevUsernames) => 
+    setUsernames((prevUsernames) => 
     prevUsernames.filter((username) => username !== usernameToDelete)
   );
+
+   //const user = usernameArray.find(user => user.username == username);
   };
     return (
       <Grid
@@ -58,9 +60,10 @@ const Search = () => {
         backgroundPosition: "center",
         minHeight: "100vh",
       }}
-      >
+      > 
         <Grid
         item
+        justifyContent="center"
         style={{ textAlign: "center"}}
         >
           <h1
@@ -72,7 +75,8 @@ const Search = () => {
           >
             ⟡Add a UQutie⟡
           </h1>
-          <Grid container spacing={3} alignItems="center">
+          <Grid container spacing={3} alignItems="center" justifyContent="center">
+            
             <Grid item>
               <TextField
               id="username-input"
@@ -82,6 +86,7 @@ const Search = () => {
               onChange={handleFriendSearch}
               />
             </Grid>
+
             <Grid item>
               <IconButton
               aria-label="Add Friend"
@@ -92,11 +97,19 @@ const Search = () => {
                 <AddIcon />
               </IconButton>
             </Grid>
+
           </Grid>
-          <h3 style={{ fontFamily: "Baloo Bhaijaan", color: "#996FD6" }}>
+
+          </Grid>
+
+          <Grid 
+          item
+          style= {{ width: "100%" }}>
+          <h3 style={{ fontFamily: "Baloo Bhaijaan", color: "#996FD6", textAlign: "center"}}>
           Current Friends:
           </h3>
-          <List>
+          <List sx={{ display: 'flex', flexDirection: 'column', padding: 0 }}>
+            {/* flexWrap: 'wrap', justifyContent: 'center', maxWidth:'100% */}
             {usernames.map((username, index) => (
               <ListItem
               key={index}
@@ -110,11 +123,17 @@ const Search = () => {
                 </IconButton>
               }
               >
+                <ListItemAvatar>
+                  <Avatar
+                    alt="profilepicture"
+                    src={usernameInput.profilePictureURL}
+                  />
+                </ListItemAvatar>
                 <ListItemText primary={username} />
               </ListItem>
             ))}
           </List>
-        </Grid>
+          </Grid>
 
       </Grid>
  
