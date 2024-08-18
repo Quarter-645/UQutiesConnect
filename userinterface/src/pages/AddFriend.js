@@ -7,8 +7,10 @@ import {
   IconButton,
   TextField,
   Grid,
+  ListItemAvatar
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import ClearIcon from "@mui/icons-material/Clear";
 import userProfile from "../TempData/UserData";
 import { Logo } from "../components";
 import { getFriends, addFriendCall, removeFriend } from "../api/api";
@@ -45,6 +47,14 @@ const Search = () => {
     } else {
       addFriendCall(USER_USERNAME, FRIEND_USERNAME);
     }
+  }
+  
+  const deleteUsername = (usernameToDelete) => {
+    setUsernames((prevUsernames) => 
+    prevUsernames.filter((username) => username !== usernameToDelete)
+  );
+
+   //const user = usernameArray.find(user => user.username == username);
   };
 
   return (
@@ -62,47 +72,75 @@ const Search = () => {
         backgroundPosition: "center",
         minHeight: "100vh",
       }}
-    >
-      <Grid item style={{ textAlign: "center" }}>
-        <Logo />
-        <h1
+      > 
+        <Grid
+        item
+        justifyContent="center"
+        style={{ textAlign: "center"}}
+        >
+          <h1
           style={{
             fontFamily: "Baloo Bhaijaan",
             fontSize: "2.5rem",
             color: "#996FD6",
           }}
-        >
-          ⟡Add a UQutie⟡
-        </h1>
-        <Grid container spacing={3} alignItems="center">
-          <Grid item>
-            <TextField
+          >
+            ⟡Add a UQutie⟡
+          </h1>
+          <Grid container spacing={3} alignItems="center" justifyContent="center">
+            <Grid item>
+              <TextField
               id="username-input"
               label="Username..."
               variant="standard"
               value={usernameInput}
               onChange={handleFriendSearch}
-            />
-          </Grid>
-          <Grid item>
-            <IconButton
+              />
+            </Grid>
+            <Grid item>
+              <IconButton
               aria-label="Add Friend"
               onClick={addFriend}
-              style={{ fontFamily: "Baloo Bhaijaan", color: "#B399DD" }}
-            >
-              <AddIcon />
-            </IconButton>
+              style={{ fontFamily: "Baloo Bhaijaan", color: "#B399DD"
+               }}
+              >
+                <AddIcon />
+              </IconButton>
+            </Grid>
           </Grid>
-        </Grid>
-        <List>
-          {usernames.map((user, index) => (
-            <ListItem key={index}>
-              <ListItemText primary={user} />
-            </ListItem>
-          ))}
-        </List>
+          </Grid>
+          <Grid 
+          item
+          >
+          <h3 style={{ fontFamily: "Baloo Bhaijaan", color: "#996FD6", textAlign: "center"}}>
+          Current Friends:
+          </h3>
+          <List sx={{ padding: 0 }}>
+            {usernames.map((username, index) => (
+              <ListItem
+              key={index}
+              secondaryAction={
+                <IconButton
+                aria-label="Remove Friend"
+                onClick={() => deleteUsername(username)}
+                style={{ color: "#900C3F" }}
+                >
+                  <ClearIcon />
+                </IconButton>
+              }>
+                <ListItemAvatar>
+                  <Avatar
+                    alt="profilepicture"
+                    src={usernameInput.profilePictureURL}
+                  />
+                </ListItemAvatar>
+                <ListItemText primary={username} 
+                primaryTypographyProps= {{style: { textAlign: 'center'}}}/>
+              </ListItem>
+            ))}
+          </List>
+          </Grid>
       </Grid>
-    </Grid>
   );
 };
 
