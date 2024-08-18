@@ -1,18 +1,17 @@
-import UserData from "../TempData/UserData";
-
-import Logo from "../assets/UQutieLogo.png";
-
-// import Autocomplete from '@mui/material/Autocomplete';
-
-
 import React, { useState } from "react";
-import {Avatar, ListItemText, ListItemAvatar, List, ListItem, IconButton, 
-  TextField, Grid} from "@mui/material";
+import {
+  Avatar,
+  ListItemText,
+  List,
+  ListItem,
+  IconButton,
+  TextField,
+  Grid,
+} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import ClearIcon from '@mui/icons-material/Clear';
-import usernameArray from "../TempData/UserData";
-
-
+import userProfile from "../TempData/UserData";
+import { Logo } from "../components";
+import { removeFriend, addFriend, getFriends } from "../api/api";
 
 const Search = () => {
   const [usernames, setUsernames] = useState([]);
@@ -20,22 +19,38 @@ const Search = () => {
 
   const handleFriendSearch = (event) => {
     setUsernameInput(event.target.value);
-  }
+  };
 
-  const possibleUsernames = usernameArray.map(user => user.username);
+  // const possibleUsernames = usernameArray.map((user) => user.username);
 
   const addFriend = () => {
+    const ASSUMED_USERNAME = "dogs"
+    
     const trimmedUsername = usernameInput.trim();
 
-    if(
+    const existingFriends = getFriends("dogs");
+
+    try {
+      if (existingFriends.includes(trimmedUsername)) {
+        removeFriend(ASSUMED_USERNAME, trimmedUsername);
+      } else {
+        addFriend(ASSUMED_USERNAME, trimmedUsername);
+      }
+    } catch (error) {
+      console.error("Error setting friend state:", error.message);
+    }
+    
+
+    if (usernames.includes(trimmedUsername)) {
+      alert("Friend is already added.");
+    } else if (
       trimmedUsername &&
-      possibleUsernames.includes(trimmedUsername) &&
-      !usernames.includes(trimmedUsername)
+      userProfile.some((user) => user.username === trimmedUsername)
     ) {
       setUsernames((prevUsernames) => [...prevUsernames, trimmedUsername]);
       setUsernameInput("");
     } else {
-      alert("Username does not exist or is friend is already added.")
+      alert("Username does not exist.");
     }
   }
   
@@ -46,15 +61,16 @@ const Search = () => {
 
    //const user = usernameArray.find(user => user.username == username);
   };
-    return (
-      <Grid
+  return (
+    <Grid
       container
       direction="column"
       justifyContent="center"
       alignItems="center"
-      spacing={3}
+      spacing={1}
       style={{
         padding: "20px",
+        paddingBottom: "60px",
         backgroundColor: "#FCF8FF",
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -136,10 +152,8 @@ const Search = () => {
           </Grid>
 
       </Grid>
- 
+    </Grid>
+  );
+};
 
-    );
-  };
-  
-  export default Search;
-  
+export default Search;

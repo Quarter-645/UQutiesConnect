@@ -1,6 +1,6 @@
 import React from "react";
 import { UQuties } from "../assets";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const Logo = () => {
   return (

@@ -1,0 +1,141 @@
+@baseUrl = http://localhost:8000
+
+
+### GET HEALTH
+GET {{baseUrl}}/health
+
+### GET FRIENDSHIPS
+GET {{baseUrl}}/get_friends/dogs
+
+### GET FRIENDSHIPS
+GET {{baseUrl}}/get_friends/cats
+
+### CREATE TEST ACCOUNT
+POST {{baseUrl}}/createaccount
+Content-Type: application/json
+
+{
+    "username": "peezey",
+    "email": "aasdfrthur@uq.edu.au",
+    "password": "arthurpassword",
+    "name": "Arthur Osorio"
+}
+
+### CREATE SECOND TEST ACCOUNT
+POST {{baseUrl}}/createaccount
+Content-Type: application/json
+
+{
+    "username": "dogs",
+    "email": "dog@uq.edu.au",
+    "password": "dogs",
+    "name": "Malenia Marikason",
+    "degree": "Bachelor of Scarlet Rot",
+    "dateStarted": "2023-08-17"
+}
+
+###TESTING NON UQ ACCOUNTS
+POST {{baseUrl}}/createaccount
+Content-Type: application/json
+
+{
+    "username": "Radiohead",
+    "email": "a@im.a.creep",
+    "password": "imaweirdo",
+    "name": "Whatthehell Amilookingfor",
+    "degree": "I Don't Belong Here",
+    "dateStarted": "2023-08-17"
+}
+
+###CORRECT PASSWORD LOGIN TEST
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+    "email": "dog@uq.edu.au",
+    "password": "dogs"
+}
+
+###NONEXISTANT STUDENT LOGIN TEST
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+    "email": "notarthur@uq.edu.au",
+    "password": "arthurpassword"
+}
+
+###FALSE PASSWORD LOGIN TEST
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+    "email": "arthur@uq.edu.au",
+    "password": "notarthurspassword"
+}
+
+
+### CREATE A NEW FRIENDSHIP
+POST {{baseUrl}}/add_friend
+Content-Type: application/json
+
+{
+    "currentUserUsername" : "dogs",
+    "newFriendUsername" : "cats"
+}
+
+### DELETE A FRIENDSHIP
+POST {{baseUrl}}/remove_friend
+Content-Type: application/json
+
+{
+    "currentUserUsername" : "dogs",
+    "friendUsername" : "test"
+}
+
+### ADD A COURSE FOR A STUDENT
+Post {{baseUrl}}/add_course
+Content-Type: application/json
+
+{
+    "currentUserUsername" : "DOGS",
+    "courseCode" : "CSSE1001"
+ }
+    
+
+### Remove A COURSE FOR A STUDENT
+Post {{baseUrl}}/remove_course
+Content-Type: application/json
+
+{
+    "currentUserUsername" : "bigdog",
+    "courseCode" : "CSSE1001"
+}
+
+### Add a hobby for a Student
+Post {{baseUrl}}/add_hobby
+Content-Type: application/json
+
+{
+    "currentUserUsername" : "Cheesey",
+    "hobby" : "Skiing"
+}
+
+### Add a Club for a Student
+Post {{baseUrl}}/add_club
+Content-Type: application/json
+
+{
+    "currentUserUsername" : "DOGS",
+    "club" : "LIT"
+}
+        
+
+### Recommended Friends
+POST {{baseUrl}}/recomended_friends 
+Content-Type: application/json
+
+{
+    "currentUserUsername" : "DOGS"
+}
+      

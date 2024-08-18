@@ -1,31 +1,42 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import { Box, Button, Grid, TextField } from "@mui/material";
 import { Password, Logo } from "../components";
+import { login } from "../api/api";
 
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: null,
-    password: null,
+    password: null
   });
-  const [isLoginSuccess, setLoginSuccess] = useState(true);
+  const [isLoginSuccess, setLoginSuccess] = useState(false);
 
   const handleFieldChange = (fieldName, value) => {
     setFormData({ ...formData, [fieldName]: value });
   };
 
   const handleSubmit = async (event) => {
+    event.preventDefault();
     console.log("Form Data:", formData);
 
-    event.preventDefault();
+    const { email, password } = formData;
+
+    try {
+      var response = await login(email, password);
+      setLoginSuccess(true);
+      navigate("/home");
+    } catch (error) {
+      console.error("Failed to login:", error);
+      setLoginSuccess(false);
+    }
 
     // assume success
-    if (isLoginSuccess) {
-      navigate("/home");
-    } else {
-      alert("Login failed!");
-    }
+    // if (isLoginSuccess) {
+    //   navigate("/home");
+    // } else {
+    //   alert("Login failed!");
+    // }
   };
 
   return (
@@ -34,6 +45,7 @@ const Login = () => {
       justifyContent="center"
       alignItems="center"
       height="100vh"
+      sx={{ backgroundColor: "#FCF8FF" }}
     >
       <form onSubmit={handleSubmit}>
         <Grid
@@ -51,6 +63,7 @@ const Login = () => {
               id="outlined-basic"
               label="Email"
               variant="outlined"
+              required
               onChange={(event) =>
                 handleFieldChange("email", event.target.value)
               }
@@ -60,12 +73,22 @@ const Login = () => {
             <Password handleChange={handleFieldChange} />
           </Grid>
           <Grid item xs={12}>
-            <Button variant="contained" type="submit">
+            <Button
+              variant="contained"
+              type="submit"
+              sx={{
+                backgroundColor: "#B399DD",
+                color: "#grey",
+                fontWeight: "bold",
+                "&:hover": { backgroundColor: "#996FD6" },
+              }}
+            >
               Confirm
             </Button>
           </Grid>
           <Grid item xs={12}>
             <Button
+              sx={{ color: "#996FD6", fontWeight: "bold" }}
               variant="text"
               size="small"
               onClick={() => navigate("/register")}
