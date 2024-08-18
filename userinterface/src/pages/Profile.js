@@ -68,7 +68,8 @@ const Profile = () => {
           style={{ width: 100, height: 100, margin: "0 auto" }}
         />
         <h3 style={{ fontFamily: "Baloo Bhaijaan", color: "#B399DD" }}>
-          {userProfile.username}
+          {/* {userProfile.username} */}
+          username
         </h3>
         <Button
           variant="contained"

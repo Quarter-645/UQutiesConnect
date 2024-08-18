@@ -9,6 +9,16 @@ services:
     networks:
       - my-network
 
+  frontend:
+    build:
+      context: ./userinterface
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./userinterface:/app
+    networks:
+      - my-network
+
 networks:
   my-network:
     driver: bridge
