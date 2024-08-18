@@ -23,16 +23,14 @@ const Search = () => {
     const loadFriends = async () => {
       try {
         const friends = await getFriends(USER_USERNAME);
+        setUsernames(friends)
         setIsFriend(friends.includes(usernameInput.trim()));
       } catch (error) {
         console.error("Error getting list of friends:", error.message);
       }
     };
-    
-    // Only load friends when usernameInput changes
-    if (usernameInput.trim()) {
-      loadFriends();
-    }
+
+    loadFriends()
   }, [USER_USERNAME, usernameInput]);
 
   const handleFriendSearch = (event) => {
@@ -43,15 +41,9 @@ const Search = () => {
     const FRIEND_USERNAME = usernameInput.trim();
 
     if (isFriend) {
-      removeFriend(USER_USERNAME, FRIEND_USERNAME);
-    } else if (
-      FRIEND_USERNAME &&
-      userProfile.some((user) => user.username === FRIEND_USERNAME)
-    ) {
-      setUsernames((prevUsernames) => [...prevUsernames, FRIEND_USERNAME]);
-      setUsernameInput("");
+      alert("Already friends with this user.");
     } else {
-      alert("Username does not exist.");
+      addFriendCall(USER_USERNAME, FRIEND_USERNAME);
     }
   };
 
