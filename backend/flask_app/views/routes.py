@@ -81,7 +81,7 @@ def removeFriend():
     )
 
     if not friendship:
-        return jsonify({'error': 'Friendship does not exist'}), 404
+        return jsonify({'error': f'Friendship between {currentUserUsername} and {friendUsername} does not exist'}), 404
     
     db.session.delete(friendship)
     db.session.commit()

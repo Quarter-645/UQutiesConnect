@@ -11,6 +11,7 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import userProfile from "../TempData/UserData";
 import { Logo } from "../components";
+import { removeFriend, addFriend, getFriends } from "../api/api";
 
 const Search = () => {
   const [usernames, setUsername] = useState([]);
@@ -23,7 +24,22 @@ const Search = () => {
   // const possibleUsernames = usernameArray.map((user) => user.username);
 
   const addFriend = () => {
+    const ASSUMED_USERNAME = "dogs"
+    
     const trimmedUsername = usernameInput.trim();
+
+    const existingFriends = getFriends("dogs");
+
+    try {
+      if (existingFriends.includes(trimmedUsername)) {
+        removeFriend(ASSUMED_USERNAME, trimmedUsername);
+      } else {
+        addFriend(ASSUMED_USERNAME, trimmedUsername);
+      }
+    } catch (error) {
+      console.error("Error setting friend state:", error.message);
+    }
+    
 
     if (usernames.includes(trimmedUsername)) {
       alert("Friend is already added.");

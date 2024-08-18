@@ -1,19 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Avatar, Button, Grid } from "@mui/material";
 import UserData from "../TempData/UserData";
 import userProfile from "../TempData/UserData";
 import TagList from "../components/TagList";
 import CourseCodes from "../TempData/CourseCodes";
 import ClubNames from "../TempData/ClubNames";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { getFriends, addFriend, removeFriend } from "../api/api";
 
 const FriendProfile = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [isFriend, setFriend] = useState(false);
+  const USER_USERNAME = "dogs"
+  const FRIEND_USERNAME = "test"
 
+  const location = useLocation();
+  
   const { username } = location.state || {};
   console.log("username", username);
+
+  const [isFriend, setFriend] = useState(false);
+
+  useEffect(() => {
+    const loadFriends = async () => {
+      try {
+        const friends = await getFriends(USER_USERNAME);
+        setFriend(friends.includes(FRIEND_USERNAME));
+      } catch (error) {
+        console.error("Error getting list of friends:", error.message);
+      }
+    };
+
+    loadFriends();
+  }, [USER_USERNAME, FRIEND_USERNAME]);
 
   const userClubs = UserData.map((user) => {
     if (user.username === "not_holly") {
@@ -29,13 +46,18 @@ const FriendProfile = () => {
     return null;
   }).filter((courses) => courses !== null);
 
-  // const [isUser, setIsUser] = useState(UserData.username === "not_holly");
-  const [isUser, setIsUser] = useState(true);
-
   const handleFriendClick = () => {
-    // navigate("/friend");
+    try {
+      if (isFriend) {
+        removeFriend(USER_USERNAME, FRIEND_USERNAME);
+      } else {
+        addFriend(USER_USERNAME, FRIEND_USERNAME);
+      }
+    } catch (error) {
+      console.error("Error setting friend state:", error.message);
+    }
     setFriend(!isFriend);
-  };
+  }; 
 
   return (
     <Grid

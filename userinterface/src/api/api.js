@@ -38,7 +38,7 @@ export const removeFriend = async (currentUserUsername, friendUsername) => {
     try {
         const payload = {
             currentUserUsername: currentUserUsername,
-            newFriendUsername: friendUsername
+            friendUsername: friendUsername
         }
 
         const response = await fetch(`${BASE_URL}/remove_friend`, {
