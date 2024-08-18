@@ -7,8 +7,10 @@ import {
   IconButton,
   TextField,
   Grid,
+  ListItemAvatar
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import ClearIcon from "@mui/icons-material/Clear";
 import userProfile from "../TempData/UserData";
 import { Logo } from "../components";
 import { removeFriend, addFriend, getFriends } from "../api/api";
@@ -92,7 +94,6 @@ const Search = () => {
             ⟡Add a UQutie⟡
           </h1>
           <Grid container spacing={3} alignItems="center" justifyContent="center">
-            
             <Grid item>
               <TextField
               id="username-input"
@@ -102,7 +103,6 @@ const Search = () => {
               onChange={handleFriendSearch}
               />
             </Grid>
-
             <Grid item>
               <IconButton
               aria-label="Add Friend"
@@ -113,19 +113,15 @@ const Search = () => {
                 <AddIcon />
               </IconButton>
             </Grid>
-
           </Grid>
-
           </Grid>
-
           <Grid 
           item
-          style= {{ width: "100%" }}>
+          >
           <h3 style={{ fontFamily: "Baloo Bhaijaan", color: "#996FD6", textAlign: "center"}}>
           Current Friends:
           </h3>
-          <List sx={{ display: 'flex', flexDirection: 'column', padding: 0 }}>
-            {/* flexWrap: 'wrap', justifyContent: 'center', maxWidth:'100% */}
+          <List sx={{ padding: 0 }}>
             {usernames.map((username, index) => (
               <ListItem
               key={index}
@@ -133,26 +129,24 @@ const Search = () => {
                 <IconButton
                 aria-label="Remove Friend"
                 onClick={() => deleteUsername(username)}
-                style={{ color: "#900C3F"}}
+                style={{ color: "#900C3F" }}
                 >
                   <ClearIcon />
                 </IconButton>
-              }
-              >
+              }>
                 <ListItemAvatar>
                   <Avatar
                     alt="profilepicture"
                     src={usernameInput.profilePictureURL}
                   />
                 </ListItemAvatar>
-                <ListItemText primary={username} />
+                <ListItemText primary={username} 
+                primaryTypographyProps= {{style: { textAlign: 'center'}}}/>
               </ListItem>
             ))}
           </List>
           </Grid>
-
       </Grid>
-    
   );
 };
 
