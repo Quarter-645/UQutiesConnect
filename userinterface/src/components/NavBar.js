@@ -6,6 +6,7 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import AddIcon from "@mui/icons-material/Add";
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import HomeIcon from "@mui/icons-material/Home";
 
 const paths = ["/home", "/timetable", "/profile"];
@@ -57,7 +58,7 @@ function NavBar() {
           />
           <BottomNavigationAction
             label="Timetable Matching"
-            icon={<FavoriteIcon sx={{ color: "#996FD6" }} />}
+            icon={<CalendarMonthIcon sx={{ color: "#996FD6" }} />}
           />
           <BottomNavigationAction
             label="Profile"

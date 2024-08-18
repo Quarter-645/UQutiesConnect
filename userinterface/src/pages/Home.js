@@ -31,6 +31,7 @@ const Home = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
           minHeight: "100vh",
+          boxShadow: "none", // Remove shadow
         }}
       >
         <Grid item>
@@ -48,6 +49,7 @@ const Home = () => {
               textTransform: "none",
               marginRight: "10px",
               "&:hover": { backgroundColor: "#996FD6" },
+              boxShadow: "none", // Remove shadow from button
             }}
             onClick={handleClick}
           >
@@ -62,6 +64,7 @@ const Home = () => {
               textTransform: "none",
               marginLeft: "10px",
               "&:hover": { backgroundColor: "#996FD6" },
+              boxShadow: "none", // Remove shadow from button
             }}
             onClick={handleClick}
           >
@@ -70,7 +73,7 @@ const Home = () => {
         </Grid>
 
         {FriendData.map((friend, index) => (
-          <Grid item xs={12} key={index} sx={{ textAlign: "center" }}>
+          <Grid item xs={12} key={index} sx={{ textAlign: "center", boxShadow: "none" }}>
             <MiniProfile friend={friend} />
           </Grid>
         ))}

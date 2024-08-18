@@ -116,7 +116,7 @@ const Register = () => {
               type="submit"
               sx={{
                 backgroundColor: "#B399DD",
-                color: "grey",
+                color: "white",
                 fontWeight: "bold",
                 "&:hover": { backgroundColor: "#996FD6" },
               }}
