@@ -6,7 +6,7 @@ import TagList from "../components/TagList";
 import CourseCodes from "../TempData/CourseCodes";
 import ClubNames from "../TempData/ClubNames";
 import { useLocation } from "react-router-dom";
-import { getFriends, addFriend, removeFriend } from "../api/api";
+import { getFriends, addFriendCall, removeFriend } from "../api/api";
 
 const FriendProfile = () => {
   const USER_USERNAME = "dogs"
@@ -51,7 +51,7 @@ const FriendProfile = () => {
       if (isFriend) {
         removeFriend(USER_USERNAME, FRIEND_USERNAME);
       } else {
-        addFriend(USER_USERNAME, FRIEND_USERNAME);
+        addFriendCall(USER_USERNAME, FRIEND_USERNAME);
       }
     } catch (error) {
       console.error("Error setting friend state:", error.message);
