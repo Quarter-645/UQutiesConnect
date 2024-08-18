@@ -10,6 +10,19 @@ api = Blueprint('api', __name__)
 @api.route('/health')
 def health():
     return jsonify({"status": "ok"}), 200
+
+@api.route('/get_users', methods=['GET'])
+def getUsers():
+    users = (
+        db.session.query(Student)
+        .all()
+    )
+
+    usersList = []
+    for user in users:
+        usersList.append([user.username, user.email, user.name, user.degree, user.dateStarted])
+
+    return jsonify(usersList), 200
     
 @api.route('/get_friends/<string:username>', methods=['GET'])
 def getFriends(username):

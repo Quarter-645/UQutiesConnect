@@ -4,6 +4,9 @@
 ### GET HEALTH
 GET {{baseUrl}}/health
 
+### GET Users
+GET {{baseUrl}}/get_users
+
 ### GET FRIENDSHIPS
 GET {{baseUrl}}/get_friends/dogs
 
