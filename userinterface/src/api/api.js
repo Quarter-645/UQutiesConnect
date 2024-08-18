@@ -87,6 +87,27 @@ export const getFriends = async (currentUserUsername) => {
   }
 };
 
+export const getRecommendedFriends = async () => {
+    try {
+        const response = await fetch(
+            `${BASE_URL}/recommended_friends}`
+        );
+        if (response.ok) {
+            const res = await response.json();
+            console.log("Get Recommended Friends Response:", res);
+            return res;
+        } else {
+            const errorData = await response.json();
+            console.error("Failed to Get Recommended Friends:", errorData.error);
+            throw new Error(errorData.error)
+        }
+        
+    }
+    catch(error) {
+    console.error("Error Getting Recommended Friends:", error.message);
+    }
+}
+
 export const getUser = async (username) => {
   try {
     const response = await fetch(`${BASE_URL}/get_user_details/${username}`);

@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 
-import { addFriend, removeFriend, getFriends, getUser } from "./api";
+import { addFriend, removeFriend, getFriends, getUser, getRecommendedFriends } from "./api";
 
 const userID = "email@uq.edu.au";
 
@@ -22,6 +22,25 @@ export const useGetFriendsByUsername = (currentUserUsername) => {
 
   return { friendsData, loading };
 };
+
+export const useGetRecommendedFriends = () => {
+    const [recommendedFriendsData, setRecommendedFriendsData] = useState([]);
+    const [loading, setLoading] = useState(true);
+  
+    useEffect(() => {
+      const fetchRecommendedFriends = async () => {
+        const data = await getRecommendedFriends;
+        if (data) {
+            setRecommendedFriendsData(data);
+        }
+        setLoading(false);
+      };
+  
+      fetchRecommendedFriends();
+    }, []);
+  
+    return { recommendedFriendsData, loading };
+  };
 
 export const useGetUserByUsername = (username) => {
   const [userData, setUserData] = useState([]);
