@@ -13,13 +13,14 @@ import AddIcon from "@mui/icons-material/Add";
 import ClearIcon from "@mui/icons-material/Clear";
 import userProfile from "../TempData/UserData";
 import { Logo } from "../components";
-import { getFriends, addFriendCall, removeFriend } from "../api/api";
+import { getFriends, addFriendCall, getAllUsers } from "../api/api";
 
 const Search = () => {
   const USER_USERNAME = "dogs";
   const [usernames, setUsernames] = useState([]);
   const [usernameInput, setUsernameInput] = useState("");
   const [isFriend, setIsFriend] = useState(false);
+  const [existance, setExistance] = useState(false);
 
   useEffect(() => {
     const loadFriends = async () => {
@@ -39,10 +40,22 @@ const Search = () => {
     setUsernameInput(event.target.value);
   };
 
+  const userDoesntExist = async (FRIEND_USERNAME) => {
+    const users = await getAllUsers();
+    const user = users.find((user) => user[0] === FRIEND_USERNAME);
+    console.log("user", user[0] === FRIEND_USERNAME);
+    if (user[0] === FRIEND_USERNAME) {
+      setExistance(true)
+    }
+    setExistance(false)
+  }
+
   const addFriend = async () => {
     const FRIEND_USERNAME = usernameInput.trim();
 
-    if (isFriend) {
+    if (existance) {
+      alert("User doesn't exist.");
+    } else if (isFriend) {
       alert("Already friends with this user.");
     } else {
       addFriendCall(USER_USERNAME, FRIEND_USERNAME);

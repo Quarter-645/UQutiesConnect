@@ -6,7 +6,7 @@ import TagList from "../components/TagList";
 import CourseCodes from "../TempData/CourseCodes";
 import ClubNames from "../TempData/ClubNames";
 import { useLocation } from "react-router-dom";
-import { getFriends, addFriendCall, removeFriend } from "../api/api";
+import { getFriends, addFriendCall, removeFriend, getAllUsers } from "../api/api";
 
 const FriendProfile = () => {
   const USER_USERNAME = "dogs"
@@ -46,9 +46,19 @@ const FriendProfile = () => {
     return null;
   }).filter((courses) => courses !== null);
 
+  const userDoesntExist = async () => {
+    const users = await getAllUsers();
+    const user = users.find((user) => user.username === FRIEND_USERNAME);
+    if (user === undefined) {
+      return true;
+    }
+  }
+
   const handleFriendClick = () => {
     try {
-      if (isFriend) {
+      if (userDoesntExist()) {
+        alert("User Doesn't exist.");
+      } else if (isFriend) {
         removeFriend(USER_USERNAME, FRIEND_USERNAME);
       } else {
         addFriendCall(USER_USERNAME, FRIEND_USERNAME);
